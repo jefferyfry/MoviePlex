@@ -2,7 +2,7 @@
 //  JBFMovieModel.m
 //  MoviePlex
 //
-//  Created by Jeffery Fry on 8/18/14.
+//  Created by Jeffery Fry on 2/6/2016.
 //  Copyright (c) 2014 Jeff_Fry. All rights reserved.
 //
 
@@ -28,6 +28,8 @@
     [description appendString:self.title];
     [description appendString:@" year: "];
     [description appendFormat:@"%@",self.year];
+    [description appendString:@" release date: "];
+    [description appendFormat:@"%@",self.releaseDate];
     [description appendString:@" mpaaRating: "];
     [description appendString:self.mpaaRating];
     [description appendString:@" runtime: "];

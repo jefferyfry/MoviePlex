@@ -11,11 +11,7 @@
 
 @implementation JBFJSON2MovieParser
 
-+(JBFMovieSearchResult*)movieSearchResultFromJSONData:(NSData*)jsonData {
-    JBFMovieSearchResult *movieSearchResult = [JBFMovieSearchResult new];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    movieSearchResult.jsonString = [jsonString stringByTrimmingCharactersInSet:
-    [NSCharacterSet whitespaceAndNewlineCharacterSet]];;
++(JBFMovie*)movieSearchResultFromJSONData:(NSData*)jsonData {
     NSDictionary *movieDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     NSArray *moviesArray = movieDict[@"movies"];
     
@@ -27,17 +23,17 @@
         movie.runtime = thisMovieDict[@"runtime"];
         movie.synopsis = thisMovieDict[@"synopsis"];
         movie.thumbnailUrl = thisMovieDict[@"posters"][@"thumbnail"];
+        movie.releaseDate = thisMovieDict[@"release_dates"][@"theater"];
         
         NSMutableArray *cast = [NSMutableArray new];
         for(NSDictionary *thisCastDict in thisMovieDict[@"abridged_cast"]){
             [cast addObject:thisCastDict[@"name"]];
         }
         movie.cast = cast;
-        
-        [movieSearchResult.moviesArray addObject:movie];
+        return movie;
     }
     
-    return movieSearchResult;
+    return nil;
 }
 
 @end

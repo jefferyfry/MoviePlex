@@ -2,7 +2,7 @@
 //  JBFAppDelegate.m
 //  MoviePlex
 //
-//  Created by Jeffery Fry on 8/18/14.
+//  Created by Jeffery Fry on 2/6/2016.
 //  Copyright (c) 2014 Jeff_Fry. All rights reserved.
 //
 
@@ -23,7 +23,7 @@
     [NSApp activateIgnoringOtherApps:YES];
     
     //initialize the main viewing window
-    self.mainWindowController = [JBFWindowController new];
+    self.movieWindowController = [JBFMovieListingWindowController new];
     
     //set up the status bar option for exiting
     self.statusMenu = [[NSMenu alloc] init];
@@ -36,21 +36,20 @@
     [self.statusItem setImage:[[NSImage alloc] initWithContentsOfFile:statusIcon]];
     //when clicked it will show the main window and the exit option
     [self.statusItem setAction:@selector(showMainWindowAndExitOption:)];
-    
     //now schedule periodic checks with the web site
     self.syncMovieTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
-                                                        target:self selector:@selector(syncMovies:)
-                                                      userInfo:nil repeats:YES];
+                                                           target:self selector:@selector(syncMovies)
+                                                         userInfo:nil repeats:YES];
 }
 
 - (void)showMainWindowAndExitOption:(id)sender {
     [self.statusItem popUpStatusItemMenu:self.statusMenu]; //show exit
-    [self.mainWindowController showWindow:self]; //show main window
+    [self.movieWindowController showWindow:self]; //show main window
     [NSApp activateIgnoringOtherApps:YES]; //bring main window to front
 }
 
-- (void)syncMovies:(id)sender {
-    
+- (void)syncMovies {
+    [self.movieWindowController syncMovies:self];
 }
 
 - (void)exit:(id)sender {

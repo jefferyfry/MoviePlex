@@ -16,5 +16,8 @@
 @property (weak) IBOutlet NSTextField *castTextField;
 @property (weak) IBOutlet NSImageView *thumbnailImage;
 @property IBOutlet NSTextView *synopsisTextView;
+@property (weak) IBOutlet NSTextField *releaseDateTextField;
+@property (weak) IBOutlet NSTextField *uploadDateTextField;
+@property (weak) IBOutlet NSButton *markWatched;
 
 @end

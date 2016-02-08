@@ -2,20 +2,20 @@
 //  JBFMovieSearchListingViewController.m
 //  MoviePlex
 //
-//  Created by Jeffery Fry on 8/18/14.
+//  Created by Jeffery Fry on 2/6/2016.
 //  Copyright (c) 2014 Jeff_Fry. All rights reserved.
 //
 
-#import "JBFMovieSearchListingViewController.h"
+#import "JBFMovieListingViewController.h"
 #import "JBFMovie.h"
 #import "JBFMovieTableCellView.h"
 
-@interface JBFMovieSearchListingViewController ()
+@interface JBFMovieListingViewController ()
 @property (weak) IBOutlet NSTableView *movieSearchResultsTableView;
 
 @end
 
-@implementation JBFMovieSearchListingViewController
+@implementation JBFMovieListingViewController
 
 - (id)init
 {

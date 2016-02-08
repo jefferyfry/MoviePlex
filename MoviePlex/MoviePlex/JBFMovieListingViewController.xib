@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="JBFMovieSearchListingViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="JBFMovieListingViewController">
             <connections>
                 <outlet property="movieSearchResultsTableView" destination="SF0-5A-BpF" id="lRM-r9-boR"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -17,13 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="165" horizontalPageScroll="10" verticalLineScroll="165" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch4-2V-xv0">
+                <scrollView autohidesScrollers="YES" horizontalLineScroll="192" horizontalPageScroll="10" verticalLineScroll="192" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch4-2V-xv0">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                     <clipView key="contentView" id="VNm-eC-1b5">
                         <rect key="frame" x="1" y="1" width="478" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="163" rowSizeStyle="automatic" viewBased="YES" id="SF0-5A-BpF">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="190" rowSizeStyle="automatic" viewBased="YES" id="SF0-5A-BpF">
                                 <rect key="frame" x="0.0" y="0.0" width="478" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -45,15 +44,15 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="mfu-uM-Qoh" customClass="JBFMovieTableCellView">
-                                                <rect key="frame" x="1" y="1" width="475" height="163"/>
+                                                <rect key="frame" x="1" y="1" width="475" height="190"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afg-rU-vU0">
-                                                        <rect key="frame" x="0.0" y="83" width="83" height="83"/>
+                                                        <rect key="frame" x="0.0" y="110" width="83" height="83"/>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" image="blank_poster" id="NFV-Ra-inM"/>
                                                     </imageView>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="NAv-Mk-DIu">
-                                                        <rect key="frame" x="130" y="143" width="344" height="17"/>
+                                                        <rect key="frame" x="130" y="170" width="344" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Title" id="OCM-be-E8h">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -61,7 +60,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tAf-qv-yC8">
-                                                        <rect key="frame" x="3" y="61" width="77" height="17"/>
+                                                        <rect key="frame" x="3" y="88" width="77" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" title="MPAA" drawsBackground="YES" id="YGu-8k-yBO">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +68,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ifn-ZP-N0l">
-                                                        <rect key="frame" x="3" y="37" width="77" height="17"/>
+                                                        <rect key="frame" x="3" y="64" width="77" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" title="Runtime" drawsBackground="YES" id="Am6-EM-h0m">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -77,7 +76,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FOA-Q8-3VI">
-                                                        <rect key="frame" x="88" y="138" width="31" height="22"/>
+                                                        <rect key="frame" x="88" y="165" width="31" height="22"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" title="Year" drawsBackground="YES" id="YYj-km-WhH">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -85,7 +84,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sdd-bD-PQe">
-                                                        <rect key="frame" x="88" y="37" width="384" height="17"/>
+                                                        <rect key="frame" x="88" y="64" width="384" height="17"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" title="Cast" drawsBackground="YES" id="BRX-TH-D5y">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -93,7 +92,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8y-Qq-2VD">
-                                                        <rect key="frame" x="88" y="62" width="384" height="75"/>
+                                                        <rect key="frame" x="88" y="89" width="384" height="75"/>
                                                         <clipView key="contentView" id="hgg-Vy-Nu1">
                                                             <rect key="frame" x="0.0" y="0.0" width="384" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,26 +123,42 @@
                                                         </scroller>
                                                     </scrollView>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3wx-0a-Ubp">
-                                                        <rect key="frame" x="-3" y="1" width="134" height="32"/>
+                                                        <rect key="frame" x="-3" y="-4" width="134" height="32"/>
                                                         <buttonCell key="cell" type="push" title="Download Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dxT-BC-bRD">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5wt-D0-6A6">
-                                                        <rect key="frame" x="244" y="9" width="140" height="18"/>
+                                                        <rect key="frame" x="244" y="4" width="140" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Mark as Watched" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qOe-78-Lrt">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XV4-as-Aex">
-                                                        <rect key="frame" x="126" y="1" width="111" height="32"/>
+                                                        <rect key="frame" x="126" y="-4" width="111" height="32"/>
                                                         <buttonCell key="cell" type="push" title="Watch Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0rE-Db-3bU">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
+                                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHS-qF-nb2">
+                                                        <rect key="frame" x="132" y="32" width="96" height="22"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Upload Date" drawsBackground="YES" id="5ff-sj-wuz">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nfg-3p-Vn8">
+                                                        <rect key="frame" x="3" y="32" width="96" height="22"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Release Date" drawsBackground="YES" id="U3B-c2-A79">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="sdd-bD-PQe" firstAttribute="top" secondItem="mfu-uM-Qoh" secondAttribute="top" constant="109" id="0LS-kn-4hV"/>
@@ -174,12 +189,15 @@
                                                 <connections>
                                                     <outlet property="castTextField" destination="sdd-bD-PQe" id="4gj-7h-1pN"/>
                                                     <outlet property="imageView" destination="Afg-rU-vU0" id="ABZ-u0-8ph"/>
+                                                    <outlet property="markWatched" destination="5wt-D0-6A6" id="7h9-gZ-AQB"/>
                                                     <outlet property="mpaaTextField" destination="tAf-qv-yC8" id="eWS-tA-SJt"/>
+                                                    <outlet property="releaseDateTextField" destination="Nfg-3p-Vn8" id="0g0-Ku-fgM"/>
                                                     <outlet property="runtimeTextField" destination="Ifn-ZP-N0l" id="FvD-3M-PsL"/>
                                                     <outlet property="synopsisTextView" destination="5s1-Cp-mTj" id="bdT-Se-I7u"/>
                                                     <outlet property="textField" destination="NAv-Mk-DIu" id="L3I-eT-biV"/>
                                                     <outlet property="thumbnailImage" destination="Afg-rU-vU0" id="ogN-Ec-JHC"/>
                                                     <outlet property="titleTextField" destination="NAv-Mk-DIu" id="Zct-Lc-DPT"/>
+                                                    <outlet property="uploadDateTextField" destination="EHS-qF-nb2" id="Gcj-be-DGX"/>
                                                     <outlet property="yearTextField" destination="FOA-Q8-3VI" id="mM6-ul-Q91"/>
                                                 </connections>
                                             </tableCellView>
@@ -206,6 +224,7 @@
                 <constraint firstAttribute="trailing" secondItem="ch4-2V-xv0" secondAttribute="trailing" id="aFK-FR-FXQ"/>
                 <constraint firstItem="ch4-2V-xv0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="vdN-dw-sAc"/>
             </constraints>
+            <point key="canvasLocation" x="267" y="328"/>
         </customView>
     </objects>
     <resources>

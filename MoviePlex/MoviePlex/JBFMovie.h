@@ -2,7 +2,7 @@
 //  JBFMovieModel.h
 //  MoviePlex
 //
-//  Created by Jeffery Fry on 8/18/14.
+//  Created by Jeffery Fry on 2/6/2016.
 //  Copyright (c) 2014 Jeff_Fry. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *synopsis;
 @property (strong, nonatomic) NSString *thumbnailUrl;
 @property (strong, nonatomic) NSMutableArray *cast;
+@property (strong, nonatomic) NSString *releaseDate;
 
 -(NSString*)stringFromCast;
 

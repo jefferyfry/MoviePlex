@@ -2,20 +2,16 @@
 //  JBFRottenTomatoesMovieSearch.h
 //  MoviePlex
 //
-//  Created by Jeffery Fry on 8/18/14.
+//  Created by Jeffery Fry on 2/6/2016.
 //  Copyright (c) 2014 Jeff_Fry. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "JBFMovieSearchResult.h"
+#import "JBFMovie.h"
 
 @protocol JBFRottenTomatoesMovieSearchDelegate <NSObject>
 
--(void)startedSearchRequest;
-
--(void)updateSearchRequestProgress:(double)progress;
-
--(void)finishedSearchRequest:(JBFMovieSearchResult*)results;
+-(void)finishedSearchRequest:(JBFMovie*)movie;
 
 @end
 
@@ -23,6 +19,6 @@
 
 @property (weak) id<JBFRottenTomatoesMovieSearchDelegate> delegate;
 
--(void)searchForMovie:(NSString*)searchText forNumberOfResults:(NSUInteger)numResults;
+-(void)searchForMovie:(NSString*)searchText;
 
 @end

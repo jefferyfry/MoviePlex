@@ -186,12 +186,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFRottenTomatoesMovieSearch.m"
-            timestampString = "476084711.35121"
+            timestampString = "476592971.3861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "-searchForMovie:forNumberOfResults:"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-searchForMovie:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,12 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFRottenTomatoesMovieSearch.m"
-            timestampString = "476084716.657251"
+            timestampString = "476592971.3861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "-searchForMovie:forNumberOfResults:"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-searchForMovie:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFRottenTomatoesMovieSearch.m"
-            timestampString = "476084772.265256"
+            timestampString = "476592971.3861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-connectionDidFinishLoading:"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFRottenTomatoesMovieSearch.m"
-            timestampString = "476084816.280956"
+            timestampString = "476592971.3861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-connection:didReceiveData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFRottenTomatoesMovieSearch.m"
-            timestampString = "476084817.509152"
+            timestampString = "476592971.3861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "-connection:didReceiveResponse:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFAppDelegate.m"
-            timestampString = "476492181.693467"
+            timestampString = "476576809.173439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-showMainWindowAndExitOption:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,12 +282,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoviePlex/JBFAppDelegate.m"
-            timestampString = "476492181.693467"
+            timestampString = "476592971.3861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-syncMovies:"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-syncMovies"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

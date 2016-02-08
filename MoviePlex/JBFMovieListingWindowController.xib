@@ -5,9 +5,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="JBFWindowController">
+        <customObject id="-2" userLabel="File's Owner" customClass="JBFMovieListingWindowController">
             <connections>
+                <outlet property="movieFilterField" destination="9Nz-Mu-Al8" id="BNf-yV-GMO"/>
+                <outlet property="movieListingUrlField" destination="xAh-Os-TXP" id="kyL-DY-ImQ"/>
                 <outlet property="movieSearchField" destination="vBe-34-avR" id="8w9-zx-F76"/>
+                <outlet property="movieSortField" destination="zAU-HI-EaW" id="mol-iE-IFZ"/>
+                <outlet property="syncNowButton" destination="jJB-kK-guz" id="dH1-G3-BDC"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -27,9 +31,9 @@
                     <toolbarItem implicitItemIdentifier="AE8DE513-6A8E-4D88-979A-A50211B1AF2D" label="Movie Search" paletteLabel="Movie Search" id="MjZ-yw-DI4">
                         <nil key="toolTip"/>
                         <size key="minSize" width="96" height="22"/>
-                        <size key="maxSize" width="96" height="22"/>
+                        <size key="maxSize" width="120" height="22"/>
                         <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="vBe-34-avR">
-                            <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                            <rect key="frame" x="0.0" y="14" width="120" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="9Nc-GJ-SUy">
                                 <font key="font" metaFont="system"/>
@@ -67,11 +71,54 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="syncMovies:" target="-2" id="L59-MA-0nQ"/>
+                            </connections>
                         </button>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="4DEF63F9-D4B8-4335-BF0A-CAA85BD31F6B" label="Sort" paletteLabel="Sort" id="MCz-Fr-5yK">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="99" height="26"/>
+                        <size key="maxSize" width="99" height="26"/>
+                        <comboBox key="view" verticalHuggingPriority="750" id="zAU-HI-EaW">
+                            <rect key="frame" x="0.0" y="14" width="99" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="uYk-g6-XEj">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <objectValues>
+                                    <string>Upload Date</string>
+                                    <string>Release Date</string>
+                                </objectValues>
+                            </comboBoxCell>
+                        </comboBox>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="FBCC25A3-4758-4B93-AE50-5C1B33A3E98E" label="Filter" paletteLabel="Filter" id="FBz-V4-KOx">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="99" height="26"/>
+                        <size key="maxSize" width="99" height="26"/>
+                        <comboBox key="view" verticalHuggingPriority="750" id="9Nz-Mu-Al8">
+                            <rect key="frame" x="0.0" y="14" width="99" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="CY6-48-ZWk">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <objectValues>
+                                    <string>All</string>
+                                    <string>Unwatched</string>
+                                    <string>Watched</string>
+                                </objectValues>
+                            </comboBoxCell>
+                        </comboBox>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="MjZ-yw-DI4"/>
+                    <toolbarItem reference="aAL-lp-pYe"/>
+                    <toolbarItem reference="MCz-Fr-5yK"/>
+                    <toolbarItem reference="FBz-V4-KOx"/>
                     <toolbarItem reference="aAL-lp-pYe"/>
                     <toolbarItem reference="qZ2-Cs-fbN"/>
                     <toolbarItem reference="y1b-aL-E8O"/>

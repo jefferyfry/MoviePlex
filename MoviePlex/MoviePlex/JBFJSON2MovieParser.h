@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JBFMovieSearchResult.h"
+#import "JBFMovie.h"
 
 @interface JBFJSON2MovieParser : NSObject
 
-+(JBFMovieSearchResult*)movieSearchResultFromJSONData:(NSData*)data;
++(JBFMovie*)movieSearchResultFromJSONData:(NSData*)data;
 
 @end
 
