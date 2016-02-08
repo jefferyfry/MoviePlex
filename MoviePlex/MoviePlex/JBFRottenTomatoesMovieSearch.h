@@ -19,6 +19,6 @@
 
 @property (weak) id<JBFRottenTomatoesMovieSearchDelegate> delegate;
 
--(void)searchForMovie:(NSString*)searchText;
+-(void)searchForMovie:(NSString*)searchText withDownloadUrl:(NSString*)downloadUrl withUploadDate:(NSString*)uploadDate;
 
 @end

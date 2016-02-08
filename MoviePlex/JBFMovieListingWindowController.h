@@ -7,13 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "JBFRottenTomatoesMovieSearch.h"
+#import "JBFMovieSyncer.h"
 #import "JBFMovieListingViewController.h"
 
-@interface JBFMovieListingWindowController : NSWindowController <NSURLConnectionDataDelegate,JBFRottenTomatoesMovieSearchDelegate>
+@interface JBFMovieListingWindowController : NSWindowController <JBFMovieSyncerDelegate>
 
 -(void)submitSearch:(NSString*)text;
 
--(IBAction)syncMovies:(id)sender;
+
 
 @end

@@ -7,10 +7,13 @@
 //
 
 #import "JBFAppDelegate.h"
+#import "JBFMovieSyncer.h"
 
 @interface JBFAppDelegate()
 
 @property NSTimer *syncMovieTimer;
+
+@property JBFMovieSyncer *movieSyncer;
 
 
 @end
@@ -25,8 +28,18 @@
     //initialize the main viewing window
     self.movieWindowController = [JBFMovieListingWindowController new];
     
-    //set up the status bar option for exiting
+    //initilize the movie syncer
+    self.movieSyncer = [[JBFMovieSyncer alloc] init];
+    
+    //add status bar menu
     self.statusMenu = [[NSMenu alloc] init];
+    
+    //add option for sync now
+    [self.statusMenu addItemWithTitle:@"Sync Now" action:@selector(syncMovies) keyEquivalent:@""];
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
+    
+    //add option for exiting
     [self.statusMenu addItemWithTitle:@"Exit" action:@selector(exit:) keyEquivalent:@""];
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
@@ -37,7 +50,7 @@
     //when clicked it will show the main window and the exit option
     [self.statusItem setAction:@selector(showMainWindowAndExitOption:)];
     //now schedule periodic checks with the web site
-    self.syncMovieTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
+    self.syncMovieTimer = [NSTimer scheduledTimerWithTimeInterval:300.0
                                                            target:self selector:@selector(syncMovies)
                                                          userInfo:nil repeats:YES];
 }
@@ -49,7 +62,7 @@
 }
 
 - (void)syncMovies {
-    [self.movieWindowController syncMovies:self];
+    [self.movieSyncer syncMovies];
 }
 
 - (void)exit:(id)sender {

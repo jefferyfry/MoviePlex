@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSString *thumbnailUrl;
 @property (strong, nonatomic) NSMutableArray *cast;
 @property (strong, nonatomic) NSString *releaseDate;
+@property (strong, nonatomic) NSString *uploadDate;
+@property (strong, nonatomic) NSString *downloadUrl;
 
 -(NSString*)stringFromCast;
 

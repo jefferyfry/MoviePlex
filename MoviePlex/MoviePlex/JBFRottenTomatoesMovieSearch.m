@@ -8,6 +8,7 @@
 
 #import "JBFRottenTomatoesMovieSearch.h"
 #import "JBFJSON2MovieParser.h"
+#import "NSURLConnection+NSURLConnectionAddition.h"
 
 NSString *const RottenTomatoesMovieAPIUrl = @"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=8pmwpbz6jmxepyrmgkryr46u&q=%@&page_limit=%lu&page=1";
 
@@ -21,20 +22,26 @@ NSString *const RottenTomatoesMovieAPIUrl = @"http://api.rottentomatoes.com/api/
 
 -(id)init {
     if (self = [super init])  {
-        //init here
+        //does nothing
     }
     return self;
 }
 
+-(void)executeRequestWithDelay:(NSURLConnection*)movieSearchUrlConnection {
+    [NSThread sleepForTimeInterval:0.4];
+    [movieSearchUrlConnection start];
+}
 
--(void)searchForMovie:(NSString*)searchText;
+-(void)searchForMovie:(NSString*)searchText withDownloadUrl:(NSString*)downloadUrl withUploadDate:(NSString*)uploadDate
 {
     NSString *urlEncodedSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString *searchMovieUrlString = [NSString stringWithFormat:RottenTomatoesMovieAPIUrl,urlEncodedSearchText,(unsigned long)1];
     NSURL *searchMovieUrl = [NSURL URLWithString:searchMovieUrlString];
     NSURLRequest *searchMovieUrlRequest = [NSURLRequest requestWithURL:searchMovieUrl];
     NSURLConnection *movieSearchUrlConnection = [[NSURLConnection alloc] initWithRequest:searchMovieUrlRequest delegate:self];
-    [movieSearchUrlConnection start];
+    movieSearchUrlConnection.downloadUrl = downloadUrl;
+    movieSearchUrlConnection.uploadDate = uploadDate;
+    [self performSelectorInBackground:@selector(executeRequestWithDelay:) withObject:movieSearchUrlConnection];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -50,7 +57,11 @@ NSString *const RottenTomatoesMovieAPIUrl = @"http://api.rottentomatoes.com/api/
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if([self.delegate respondsToSelector:@selector(finishedSearchRequest:)]){
+        NSString* jsonString = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
+        NSLog(@"jsonString: %@", jsonString);
         JBFMovie *movieSearchResult = [JBFJSON2MovieParser movieSearchResultFromJSONData:self.receivedData];
+        movieSearchResult.downloadUrl = connection.downloadUrl;
+        movieSearchResult.uploadDate = connection.uploadDate;
         [self.delegate finishedSearchRequest:movieSearchResult];
     }
     

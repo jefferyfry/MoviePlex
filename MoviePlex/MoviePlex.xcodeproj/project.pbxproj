@@ -30,6 +30,9 @@
 		123F3E2019A40EB500441B9C /* JBFMovieTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E1F19A40EB500441B9C /* JBFMovieTableCellView.m */; };
 		12533FDE1C65C4C000E471F4 /* movieplex.png in Resources */ = {isa = PBXBuildFile; fileRef = 12533FDD1C65C4C000E471F4 /* movieplex.png */; };
 		12D46BCD1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12D46BCB1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld */; };
+		8118402C1C6911DE001A2C81 /* JBFMovieSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */; };
+		8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */; };
+		811840321C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 811840311C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,12 @@
 		123F3E1F19A40EB500441B9C /* JBFMovieTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieTableCellView.m; sourceTree = "<group>"; };
 		12533FDD1C65C4C000E471F4 /* movieplex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex.png; sourceTree = "<group>"; };
 		12D46BCC1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviePlex.xcdatamodel; sourceTree = "<group>"; };
+		8118402A1C6911DE001A2C81 /* JBFMovieSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovieSyncer.h; sourceTree = "<group>"; };
+		8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieSyncer.m; sourceTree = "<group>"; };
+		8118402D1C6925F9001A2C81 /* JBFCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFCoreDataStack.h; sourceTree = "<group>"; };
+		8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFCoreDataStack.m; sourceTree = "<group>"; };
+		811840301C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+NSURLConnectionAddition.h"; sourceTree = "<group>"; };
+		811840311C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+NSURLConnectionAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +173,12 @@
 				123F3E1819A3C26300441B9C /* JBFMovieSearchResult.h */,
 				123F3E1919A3C26300441B9C /* JBFMovieSearchResult.m */,
 				12D46BCB1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld */,
+				8118402A1C6911DE001A2C81 /* JBFMovieSyncer.h */,
+				8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */,
+				8118402D1C6925F9001A2C81 /* JBFCoreDataStack.h */,
+				8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */,
+				811840301C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.h */,
+				811840311C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.m */,
 			);
 			path = MoviePlex;
 			sourceTree = "<group>";
@@ -329,10 +344,13 @@
 				123F3E1319A27B7A00441B9C /* JBFMovie.m in Sources */,
 				123F3E1A19A3C26300441B9C /* JBFMovieSearchResult.m in Sources */,
 				123F3E1D19A3C33D00441B9C /* JBFJSON2MovieParser.m in Sources */,
+				8118402C1C6911DE001A2C81 /* JBFMovieSyncer.m in Sources */,
 				123F3E0719A2786300441B9C /* JBFMovieListingViewController.m in Sources */,
+				8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */,
 				123F3E1019A27B6100441B9C /* JBFRottenTomatoesMovieSearch.m in Sources */,
 				123F3DD319A26D8600441B9C /* main.m in Sources */,
 				123F3DDA19A26D8600441B9C /* JBFAppDelegate.m in Sources */,
+				811840321C6948D0001A2C81 /* NSURLConnection+NSURLConnectionAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

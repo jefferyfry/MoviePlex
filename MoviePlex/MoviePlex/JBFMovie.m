@@ -30,6 +30,8 @@
     [description appendFormat:@"%@",self.year];
     [description appendString:@" release date: "];
     [description appendFormat:@"%@",self.releaseDate];
+    [description appendString:@" upload date: "];
+    [description appendFormat:@"%@",self.uploadDate];
     [description appendString:@" mpaaRating: "];
     [description appendString:self.mpaaRating];
     [description appendString:@" runtime: "];
@@ -38,6 +40,8 @@
     [description appendString:self.synopsis];
     [description appendString:@" thumbnailUrl: "];
     [description appendString:self.thumbnailUrl];
+    [description appendString:@" downloadUrl: "];
+    [description appendString:self.downloadUrl];
     [description appendString:@" cast: "];
     for(NSString *name in self.cast){
         [description appendString:name];
