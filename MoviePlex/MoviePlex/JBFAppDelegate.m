@@ -50,7 +50,7 @@
     //when clicked it will show the main window and the exit option
     [self.statusItem setAction:@selector(showMainWindowAndExitOption:)];
     //now schedule periodic checks with the web site
-    self.syncMovieTimer = [NSTimer scheduledTimerWithTimeInterval:300.0
+    self.syncMovieTimer = [NSTimer scheduledTimerWithTimeInterval:3600.0
                                                            target:self selector:@selector(syncMovies)
                                                          userInfo:nil repeats:YES];
 }
