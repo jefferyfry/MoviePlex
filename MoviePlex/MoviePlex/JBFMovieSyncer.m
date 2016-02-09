@@ -8,7 +8,7 @@
 
 #import "JBFMovieSyncer.h"
 
-NSString *const MovieListingUrl = @"http://brentium/movies/";
+NSString *const MovieListingUrl = @"http://brentium.sea.i.extrahop.com/movies/";
 NSString *const XpathRows = @"//tbody/tr";
 NSString *const XpathLink = @"td[1]/a/@href";
 NSString *const XpathUploadDate = @"td[@class='m']";
@@ -56,8 +56,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     [[NSXMLDocument alloc] initWithData:self.receivedData options:NSXMLDocumentTidyHTML error:&error];
     
     NSXMLElement *rootNode = [document rootElement];
-    
-    //NSString *xpathQueryString = @"//@href";
+  
     NSArray *rowNodes = [rootNode nodesForXPath:XpathRows error:&error];
     NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
     
@@ -83,15 +82,12 @@ NSString *const XpathUploadDate = @"td[@class='m']";
             }
         }
     }
-    //iterate through links and check against core data
-    //if link does not exist, query rotten tomatoes and add entry to core data
-    //[self.rottenTomatoesMovieSearch searchForMovie:keywords forNumberOfResults:1];
-
-    //if updates existing notify delegate
+    
 }
 
 -(void)finishedSearchRequest:(JBFMovie*)result{
-    NSLog(@"%@",result);
+    //we have an update
+    //therefore persist it and then notify
 }
 
 

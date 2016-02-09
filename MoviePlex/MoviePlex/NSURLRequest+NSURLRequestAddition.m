@@ -6,13 +6,14 @@
 //  Copyright © 2016 Jeff_Fry. All rights reserved.
 //
 
-#import "NSURLConnection+NSURLConnectionAddition.h"
+#import "NSURLRequest+NSURLRequestAddition.h"
 #import <objc/runtime.h>
 
 static const void *DownloadUrlKey = &DownloadUrlKey;
 static const void *UploadDateKey = &UploadDateKey;
+static const void *SearchTextKey = &SearchTextKey;
 
-@implementation NSURLConnection (NSURLConnectionAddition)
+@implementation NSURLRequest (NSURLRequestAddition)
 
 - (void)setDownloadUrl:(NSString *)downloadUrl
 {
@@ -32,6 +33,16 @@ static const void *UploadDateKey = &UploadDateKey;
 - (NSString *)uploadDate
 {
     return objc_getAssociatedObject(self, UploadDateKey);
+}
+
+- (void)setSearchText:(NSString *)searchText
+{
+    objc_setAssociatedObject(self, SearchTextKey, searchText, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSString *)searchText
+{
+    return objc_getAssociatedObject(self, SearchTextKey);
 }
 
 @end

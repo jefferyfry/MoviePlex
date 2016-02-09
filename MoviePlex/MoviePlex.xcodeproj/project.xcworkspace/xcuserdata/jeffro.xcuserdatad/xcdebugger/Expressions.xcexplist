@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[JBFRottenTomatoesMovieSearch executeRequestWithDelay:]:JBFRottenTomatoesMovieSearch.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_requestIndex">
+            </PersistentString>
+            <PersistentString
+               value = "movieSearchUrlConnection.requestIndex.doubleValue*0.2">
+            </PersistentString>
+            <PersistentString
+               value = "movieSearchUrlConnection.requestIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

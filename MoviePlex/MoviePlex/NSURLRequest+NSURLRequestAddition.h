@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSURLConnection (NSURLConnectionAddition)
+@interface NSURLRequest (NSURLRequestAddition)
 
 @property (strong, nonatomic) NSString *uploadDate;
 @property (strong, nonatomic) NSString *downloadUrl;
+@property (strong, nonatomic) NSString *searchText;
 
 @end
