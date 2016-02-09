@@ -7,13 +7,15 @@
 //
 
 #import "JBFMovieListingWindowController.h"
+#import "JBFCoreDataStack.h"
+@import CoreData;
 
 @interface JBFMovieListingWindowController ()
 
 @property JBFMovieListingViewController *movieSearchListingViewController;
 @property (weak) IBOutlet NSSearchField *movieSearchField;
 @property (weak) IBOutlet NSComboBox *movieSortField;
-@property (weak) IBOutlet NSComboBox *movieFilterField;
+@property (weak) IBOutlet NSTextField *statusField;
 
 -(void)loadMovies;
 
@@ -44,7 +46,17 @@
 }
 
 -(void)loadMovies {
+    NSManagedObjectContext* managedObjectContext = [[JBFCoreDataStack sharedStack] rootManagedObjectContext];
+    
     //load movies from core data into array
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:NO]];
+    
+    NSError *error = nil;
+    NSArray *movies = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    self.movieSearchListingViewController.movies = movies;
+    [self.movieSearchListingViewController reloadData];
 }
 
 -(void)submitSearch:(NSString*)text
@@ -59,7 +71,7 @@
 }
 
 -(void)moviesUpdated {
-    
+    [self loadMovies];
 }
 
 @end

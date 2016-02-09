@@ -47,13 +47,27 @@
 {
     JBFMovie *movie = [self.movies objectAtIndex:row];
     JBFMovieTableCellView *result = [tableView makeViewWithIdentifier:@"movieCell" owner:self];
-    result.titleTextField.stringValue = movie.title;
-    result.mpaaTextField.stringValue = movie.mpaaRating;
+    if(movie.title!=nil)
+        result.titleTextField.stringValue = movie.title;
+    if(movie.mpaaRating!=nil)
+        result.mpaaTextField.stringValue = movie.mpaaRating;
+    
     result.yearTextField.stringValue = [NSString stringWithFormat:@"%@",movie.year];
     result.runtimeTextField.stringValue = [NSString stringWithFormat:@"%@ mins",movie.runtime];
-    result.synopsisTextView.textContainer.textView.string = movie.synopsis;
+    
+    if(movie.synopsis!=nil)
+        result.synopsisTextView.textContainer.textView.string = movie.synopsis;
     [result.synopsisTextView.textContainer.textView setEditable:NO];
-    result.castTextField.stringValue = [movie stringFromCast];
+    
+    if(movie.cast!=nil)
+        result.castTextField.stringValue = movie.cast;
+    if(movie.uploadDate!=nil)
+        result.uploadDateTextField.stringValue = movie.uploadDate;
+    if(movie.releaseDate!=nil)
+        result.releaseDateTextField.stringValue = movie.releaseDate;
+    
+    if(movie.downloadUrl!=nil)
+        result.downloadUrl = movie.downloadUrl;
     
     if(movie.thumbnailUrl!=nil){
         NSURL *imageUrl = [NSURL URLWithString:movie.thumbnailUrl];

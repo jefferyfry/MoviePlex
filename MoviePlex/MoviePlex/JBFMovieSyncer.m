@@ -7,6 +7,9 @@
 //
 
 #import "JBFMovieSyncer.h"
+#import "JBFCoreDataStack.h"
+#import "JBFMovie.h"
+#import "NSString+NSStringAddition.h"
 
 NSString *const MovieListingUrl = @"http://brentium.sea.i.extrahop.com/movies/";
 NSString *const XpathRows = @"//tbody/tr";
@@ -51,15 +54,18 @@ NSString *const XpathUploadDate = @"td[@class='m']";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    //convert the directory listing to html
     NSError *error;
     NSXMLDocument *document =
     [[NSXMLDocument alloc] initWithData:self.receivedData options:NSXMLDocumentTidyHTML error:&error];
     
     NSXMLElement *rootNode = [document rootElement];
   
+    //get the listing rows
     NSArray *rowNodes = [rootNode nodesForXPath:XpathRows error:&error];
     NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
     
+    //now query core data to see if movies already exist
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
     for(NSXMLNode *rowNode in rowNodes){
         NSArray *linkNodes = [rowNode nodesForXPath:XpathLink error:&error];
@@ -85,9 +91,36 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     
 }
 
--(void)finishedSearchRequest:(JBFMovie*)result{
+-(void)finishedSearchRequest:(NSMutableDictionary*)result{
     //we have an update
     //therefore persist it and then notify
+    NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
+    
+    JBFMovie *newMovie = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:childManagedObjectContext];
+    
+    newMovie.title = result[@"title"];
+    newMovie.year = result[@"year"] ;
+    newMovie.mpaaRating = result[@"mpaa_rating"];
+    newMovie.runtime = [NSNumber numberWithInteger: [result[@"runtime"] integerValue]];
+    newMovie.synopsis = result[@"synopsis"];
+    newMovie.thumbnailUrl = result[@"posters"][@"thumbnail"];
+    newMovie.releaseDate = result[@"release_dates"][@"theater"];
+    newMovie.downloadUrl = result[@"downloadUrl"];
+    newMovie.uploadDate = result[@"uploadDate"];
+
+    NSMutableArray *castArr = [NSMutableArray new];
+    for(NSDictionary *thisCastDict in result[@"abridged_cast"]){
+        [castArr addObject:thisCastDict[@"name"]];
+    }
+    newMovie.cast = [NSString stringFromArray:castArr];
+    
+    NSError *error = nil;
+    if (![childManagedObjectContext save:&error]) {
+        NSLog(@"Error saving inserting new movie in child MOC: %@", error);
+    }
+    
+    if([self.delegate respondsToSelector:@selector(moviesUpdated)])
+        [self.delegate moviesUpdated];
 }
 
 

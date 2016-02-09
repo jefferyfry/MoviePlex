@@ -11,7 +11,7 @@
 
 @protocol JBFRottenTomatoesMovieSearchDelegate <NSObject>
 
--(void)finishedSearchRequest:(JBFMovie*)movie;
+-(void)finishedSearchRequest:(NSDictionary*)movieDict;
 
 @end
 

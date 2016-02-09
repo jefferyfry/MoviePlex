@@ -19,6 +19,8 @@
 
 @interface JBFMovieSyncer : NSObject <NSURLConnectionDataDelegate,JBFRottenTomatoesMovieSearchDelegate>
 
+@property (weak) id<JBFMovieSyncerDelegate> delegate;
+
 -(void)syncMovies;
 
 @end

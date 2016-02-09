@@ -30,6 +30,7 @@
     
     //initilize the movie syncer
     self.movieSyncer = [[JBFMovieSyncer alloc] init];
+    self.movieSyncer.delegate = self.movieWindowController;
     
     //add status bar menu
     self.statusMenu = [[NSMenu alloc] init];

@@ -10,17 +10,16 @@
 
 @implementation JBFMovie
 
--(NSString*)stringFromCast
-{
-    NSMutableString *castString = [NSMutableString new];
-    for(NSString *name in self.cast){
-        [castString appendString:name];
-        [castString appendString:@", "];
-    }
-    if(castString.length > 1)
-        [castString deleteCharactersInRange:NSMakeRange(castString.length-2, 2)];
-    return castString;
-}
+@dynamic title;
+@dynamic year;
+@dynamic mpaaRating;
+@dynamic runtime;
+@dynamic synopsis;
+@dynamic thumbnailUrl;
+@dynamic cast;
+@dynamic releaseDate;
+@dynamic uploadDate;
+@dynamic downloadUrl;
 
 -(NSString*)description{
     NSMutableString *description = [NSMutableString new];
@@ -43,10 +42,7 @@
     [description appendString:@" downloadUrl: "];
     [description appendString:self.downloadUrl];
     [description appendString:@" cast: "];
-    for(NSString *name in self.cast){
-        [description appendString:name];
-        [description appendString:@", "];
-    }
+    [description appendString:self.cast];
     return description;
 }
 

@@ -10,5 +10,12 @@
 
 @implementation JBFMovieTableCellView
 
+-(IBAction)doDownloadNow:(id)sender {
+    if(self.downloadUrl!=nil){
+        NSURL *url = [NSURL URLWithString:self.downloadUrl];
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
+}
+
 
 @end

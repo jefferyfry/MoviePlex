@@ -7,20 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface JBFMovie : NSObject
+@interface JBFMovie : NSManagedObject
 
-@property (strong, nonatomic) NSString *title;
-@property NSNumber *year;
-@property (strong, nonatomic) NSString *mpaaRating;
-@property NSNumber *runtime;
-@property (strong, nonatomic) NSString *synopsis;
-@property (strong, nonatomic) NSString *thumbnailUrl;
-@property (strong, nonatomic) NSMutableArray *cast;
-@property (strong, nonatomic) NSString *releaseDate;
-@property (strong, nonatomic) NSString *uploadDate;
-@property (strong, nonatomic) NSString *downloadUrl;
-
--(NSString*)stringFromCast;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSNumber *year;
+@property (nonatomic, retain) NSString *mpaaRating;
+@property (nonatomic, retain) NSNumber *runtime;
+@property (nonatomic, retain) NSString *synopsis;
+@property (nonatomic, retain) NSString *thumbnailUrl;
+@property (nonatomic, retain) NSString *cast;
+@property (nonatomic, retain) NSString *releaseDate;
+@property (nonatomic, retain) NSString *uploadDate;
+@property (nonatomic, retain) NSString *downloadUrl;
 
 @end

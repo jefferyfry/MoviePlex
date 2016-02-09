@@ -7,7 +7,6 @@
 //
 
 #import "JBFRottenTomatoesMovieSearch.h"
-#import "JBFJSON2MovieParser.h"
 #import "NSURLRequest+NSURLRequestAddition.h"
 
 NSString *const RottenTomatoesMovieAPIUrl = @"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=8pmwpbz6jmxepyrmgkryr46u&q=%@&page_limit=%lu&page=1";
@@ -47,6 +46,16 @@ NSString *const RottenTomatoesMovieAPIUrl = @"http://api.rottentomatoes.com/api/
     });
 }
 
+-(NSDictionary*)movieSearchResultFromJSONData:(NSData*)jsonData {
+    NSDictionary *movieDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    NSArray *moviesArray = movieDict[@"movies"];
+    
+    if((moviesArray != nil)&&([moviesArray count] != 0))
+        return moviesArray[0];
+    else
+        return nil;
+}
+
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -61,17 +70,15 @@ NSString *const RottenTomatoesMovieAPIUrl = @"http://api.rottentomatoes.com/api/
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if([self.delegate respondsToSelector:@selector(finishedSearchRequest:)]){
-        //NSString* jsonString = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
-        //NSLog(@"jsonString: %@", jsonString);
-        JBFMovie *movieSearchResult = [JBFJSON2MovieParser movieSearchResultFromJSONData:self.receivedData];
+        NSMutableDictionary *movieSearchResult = [[self movieSearchResultFromJSONData:self.receivedData] mutableCopy];
         if(movieSearchResult==nil){
-            JBFMovie *movieSearchResult = [[JBFMovie alloc] init];
-            movieSearchResult.title = connection.originalRequest.searchText;
-            NSLog(@"No Rotten Tomatoes result for: %@",movieSearchResult.title);
+            movieSearchResult = [[NSMutableDictionary alloc] init];
+            [movieSearchResult setValue:connection.originalRequest.searchText forKey:@"title"];
         }
-            
-        movieSearchResult.downloadUrl = connection.originalRequest.downloadUrl;
-        movieSearchResult.uploadDate = connection.originalRequest.uploadDate;
+        
+        [movieSearchResult setValue:connection.originalRequest.downloadUrl forKey:@"downloadUrl"];
+        [movieSearchResult setValue:connection.originalRequest.uploadDate forKey:@"uploadDate"];
+        
         [self.delegate finishedSearchRequest:movieSearchResult];
     }
     

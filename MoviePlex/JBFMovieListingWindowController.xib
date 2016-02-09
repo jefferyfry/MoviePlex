@@ -7,9 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="JBFMovieListingWindowController">
             <connections>
-                <outlet property="movieFilterField" destination="9Nz-Mu-Al8" id="BNf-yV-GMO"/>
                 <outlet property="movieSearchField" destination="vBe-34-avR" id="8w9-zx-F76"/>
                 <outlet property="movieSortField" destination="zAU-HI-EaW" id="mol-iE-IFZ"/>
+                <outlet property="statusField" destination="Ooa-Cj-2Cs" id="3t5-Ou-CWj"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -18,11 +18,21 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="832" height="472"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <value key="minSize" type="size" width="480" height="270"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="832" height="472"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ooa-Cj-2Cs">
+                        <rect key="frame" x="18" y="8" width="796" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="dHQ-Rz-Ga7">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="FF532AFF-F6CA-4936-952C-573EDC509BE8" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="hyF-Jx-myy">
                 <allowedToolbarItems>
@@ -47,9 +57,9 @@
                     <toolbarItem implicitItemIdentifier="4DEF63F9-D4B8-4335-BF0A-CAA85BD31F6B" label="Sort" paletteLabel="Sort" id="MCz-Fr-5yK">
                         <nil key="toolTip"/>
                         <size key="minSize" width="99" height="26"/>
-                        <size key="maxSize" width="99" height="26"/>
+                        <size key="maxSize" width="135" height="26"/>
                         <comboBox key="view" verticalHuggingPriority="750" id="zAU-HI-EaW">
-                            <rect key="frame" x="0.0" y="14" width="99" height="26"/>
+                            <rect key="frame" x="0.0" y="14" width="116" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="uYk-g6-XEj">
                                 <font key="font" metaFont="system"/>
@@ -62,33 +72,14 @@
                             </comboBoxCell>
                         </comboBox>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="FBCC25A3-4758-4B93-AE50-5C1B33A3E98E" label="Filter" paletteLabel="Filter" id="FBz-V4-KOx">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="99" height="26"/>
-                        <size key="maxSize" width="99" height="26"/>
-                        <comboBox key="view" verticalHuggingPriority="750" id="9Nz-Mu-Al8">
-                            <rect key="frame" x="0.0" y="14" width="99" height="26"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="CY6-48-ZWk">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <objectValues>
-                                    <string>All</string>
-                                    <string>Unwatched</string>
-                                    <string>Watched</string>
-                                </objectValues>
-                            </comboBoxCell>
-                        </comboBox>
-                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="MjZ-yw-DI4"/>
                     <toolbarItem reference="MCz-Fr-5yK"/>
-                    <toolbarItem reference="FBz-V4-KOx"/>
                     <toolbarItem reference="aAL-lp-pYe"/>
                 </defaultToolbarItems>
             </toolbar>
+            <contentBorderThickness minY="32"/>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>

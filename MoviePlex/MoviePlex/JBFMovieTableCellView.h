@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface JBFMovieTableCellView : NSTableCellView
+@interface JBFMovieTableCellView : NSTableCellView <NSURLDownloadDelegate>
 @property (weak) IBOutlet NSTextField *titleTextField;
 @property (weak) IBOutlet NSTextField *yearTextField;
 @property (weak) IBOutlet NSTextField *mpaaTextField;
@@ -18,6 +18,8 @@
 @property IBOutlet NSTextView *synopsisTextView;
 @property (weak) IBOutlet NSTextField *releaseDateTextField;
 @property (weak) IBOutlet NSTextField *uploadDateTextField;
-@property (weak) IBOutlet NSButton *markWatched;
+@property (weak) IBOutlet NSButton *downloadNow;
+@property (weak) IBOutlet NSScrollView *synopsisScrollview;
+@property (nonatomic,strong) NSString *downloadUrl;
 
 @end
