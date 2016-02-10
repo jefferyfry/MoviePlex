@@ -22,12 +22,19 @@
 		123F3DFE19A277E000441B9C /* JBFMovieListingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123F3DFC19A277E000441B9C /* JBFMovieListingWindowController.xib */; };
 		123F3E0719A2786300441B9C /* JBFMovieListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E0519A2786300441B9C /* JBFMovieListingViewController.m */; };
 		123F3E0819A2786300441B9C /* JBFMovieListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123F3E0619A2786300441B9C /* JBFMovieListingViewController.xib */; };
-		123F3E1019A27B6100441B9C /* JBFRottenTomatoesMovieSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E0F19A27B6100441B9C /* JBFRottenTomatoesMovieSearch.m */; };
+		123F3E1019A27B6100441B9C /* JBFMovieSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E0F19A27B6100441B9C /* JBFMovieSearch.m */; };
 		123F3E1319A27B7A00441B9C /* JBFMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E1219A27B7A00441B9C /* JBFMovie.m */; };
 		123F3E2019A40EB500441B9C /* JBFMovieTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E1F19A40EB500441B9C /* JBFMovieTableCellView.m */; };
-		12533FDE1C65C4C000E471F4 /* movieplex.png in Resources */ = {isa = PBXBuildFile; fileRef = 12533FDD1C65C4C000E471F4 /* movieplex.png */; };
 		12D46BCD1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12D46BCB1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld */; };
 		12D46BD01C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D46BCE1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m */; };
+		12D46BD71C6AE2AD00C8B4F7 /* movieplex22x22.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD11C6AE2AD00C8B4F7 /* movieplex22x22.png */; };
+		12D46BD81C6AE2AD00C8B4F7 /* movieplex512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD21C6AE2AD00C8B4F7 /* movieplex512x512.png */; };
+		12D46BD91C6AE2AD00C8B4F7 /* movieplex256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD31C6AE2AD00C8B4F7 /* movieplex256x256.png */; };
+		12D46BDA1C6AE2AD00C8B4F7 /* movieplex128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD41C6AE2AD00C8B4F7 /* movieplex128x128.png */; };
+		12D46BDB1C6AE2AD00C8B4F7 /* movieplex32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD51C6AE2AD00C8B4F7 /* movieplex32x32.png */; };
+		12D46BDC1C6AE2AD00C8B4F7 /* movieplex16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD61C6AE2AD00C8B4F7 /* movieplex16x16.png */; };
+		12D46BDE1C6AE32700C8B4F7 /* movieplex64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BDD1C6AE32700C8B4F7 /* movieplex64x64.png */; };
+		12D46BE01C6AE37A00C8B4F7 /* movieplex1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BDF1C6AE37A00C8B4F7 /* movieplex1024x1024.png */; };
 		8118402C1C6911DE001A2C81 /* JBFMovieSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */; };
 		8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */; };
 		812976A61C6A5DC8007C968C /* NSString+NSStringAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 812976A51C6A5DC8007C968C /* NSString+NSStringAddition.m */; };
@@ -70,16 +77,23 @@
 		123F3E0419A2786300441B9C /* JBFMovieListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovieListingViewController.h; sourceTree = "<group>"; };
 		123F3E0519A2786300441B9C /* JBFMovieListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieListingViewController.m; sourceTree = "<group>"; };
 		123F3E0619A2786300441B9C /* JBFMovieListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBFMovieListingViewController.xib; sourceTree = "<group>"; };
-		123F3E0E19A27B6100441B9C /* JBFRottenTomatoesMovieSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFRottenTomatoesMovieSearch.h; sourceTree = "<group>"; };
-		123F3E0F19A27B6100441B9C /* JBFRottenTomatoesMovieSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFRottenTomatoesMovieSearch.m; sourceTree = "<group>"; };
+		123F3E0E19A27B6100441B9C /* JBFMovieSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovieSearch.h; sourceTree = "<group>"; };
+		123F3E0F19A27B6100441B9C /* JBFMovieSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieSearch.m; sourceTree = "<group>"; };
 		123F3E1119A27B7A00441B9C /* JBFMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovie.h; sourceTree = "<group>"; };
 		123F3E1219A27B7A00441B9C /* JBFMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovie.m; sourceTree = "<group>"; };
 		123F3E1E19A40EB500441B9C /* JBFMovieTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovieTableCellView.h; sourceTree = "<group>"; };
 		123F3E1F19A40EB500441B9C /* JBFMovieTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieTableCellView.m; sourceTree = "<group>"; };
-		12533FDD1C65C4C000E471F4 /* movieplex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex.png; sourceTree = "<group>"; };
 		12D46BCC1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviePlex.xcdatamodel; sourceTree = "<group>"; };
 		12D46BCE1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+NSURLRequestAddition.m"; sourceTree = "<group>"; };
 		12D46BCF1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+NSURLRequestAddition.h"; sourceTree = "<group>"; };
+		12D46BD11C6AE2AD00C8B4F7 /* movieplex22x22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex22x22.png; sourceTree = "<group>"; };
+		12D46BD21C6AE2AD00C8B4F7 /* movieplex512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex512x512.png; sourceTree = "<group>"; };
+		12D46BD31C6AE2AD00C8B4F7 /* movieplex256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex256x256.png; sourceTree = "<group>"; };
+		12D46BD41C6AE2AD00C8B4F7 /* movieplex128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex128x128.png; sourceTree = "<group>"; };
+		12D46BD51C6AE2AD00C8B4F7 /* movieplex32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex32x32.png; sourceTree = "<group>"; };
+		12D46BD61C6AE2AD00C8B4F7 /* movieplex16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex16x16.png; sourceTree = "<group>"; };
+		12D46BDD1C6AE32700C8B4F7 /* movieplex64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex64x64.png; sourceTree = "<group>"; };
+		12D46BDF1C6AE37A00C8B4F7 /* movieplex1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex1024x1024.png; sourceTree = "<group>"; };
 		8118402A1C6911DE001A2C81 /* JBFMovieSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovieSyncer.h; sourceTree = "<group>"; };
 		8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieSyncer.m; sourceTree = "<group>"; };
 		8118402D1C6925F9001A2C81 /* JBFCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFCoreDataStack.h; sourceTree = "<group>"; };
@@ -152,10 +166,17 @@
 		123F3DCC19A26D8600441B9C /* MoviePlex */ = {
 			isa = PBXGroup;
 			children = (
+				12D46BDF1C6AE37A00C8B4F7 /* movieplex1024x1024.png */,
+				12D46BDD1C6AE32700C8B4F7 /* movieplex64x64.png */,
+				12D46BD11C6AE2AD00C8B4F7 /* movieplex22x22.png */,
+				12D46BD21C6AE2AD00C8B4F7 /* movieplex512x512.png */,
+				12D46BD31C6AE2AD00C8B4F7 /* movieplex256x256.png */,
+				12D46BD41C6AE2AD00C8B4F7 /* movieplex128x128.png */,
+				12D46BD51C6AE2AD00C8B4F7 /* movieplex32x32.png */,
+				12D46BD61C6AE2AD00C8B4F7 /* movieplex16x16.png */,
 				81BCAFE81C6AB0EB00D1A811 /* Media.xcassets */,
 				12D46BCE1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m */,
 				12D46BCF1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.h */,
-				12533FDD1C65C4C000E471F4 /* movieplex.png */,
 				123AA1B219A523FF00A16101 /* blank_poster.jpg */,
 				123F3DD819A26D8600441B9C /* JBFAppDelegate.h */,
 				123F3DD919A26D8600441B9C /* JBFAppDelegate.m */,
@@ -163,8 +184,8 @@
 				123F3E0A19A2789B00441B9C /* WindowControllers */,
 				123F3E0919A2789000441B9C /* ViewControllers */,
 				123F3DCD19A26D8600441B9C /* Supporting Files */,
-				123F3E0E19A27B6100441B9C /* JBFRottenTomatoesMovieSearch.h */,
-				123F3E0F19A27B6100441B9C /* JBFRottenTomatoesMovieSearch.m */,
+				123F3E0E19A27B6100441B9C /* JBFMovieSearch.h */,
+				123F3E0F19A27B6100441B9C /* JBFMovieSearch.m */,
 				123F3E1119A27B7A00441B9C /* JBFMovie.h */,
 				123F3E1219A27B7A00441B9C /* JBFMovie.m */,
 				12D46BCB1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld */,
@@ -308,13 +329,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				123F3DD119A26D8600441B9C /* InfoPlist.strings in Resources */,
-				12533FDE1C65C4C000E471F4 /* movieplex.png in Resources */,
+				12D46BDC1C6AE2AD00C8B4F7 /* movieplex16x16.png in Resources */,
+				12D46BDE1C6AE32700C8B4F7 /* movieplex64x64.png in Resources */,
+				12D46BD81C6AE2AD00C8B4F7 /* movieplex512x512.png in Resources */,
+				12D46BD91C6AE2AD00C8B4F7 /* movieplex256x256.png in Resources */,
 				81BCAFE91C6AB0EB00D1A811 /* Media.xcassets in Resources */,
+				12D46BDB1C6AE2AD00C8B4F7 /* movieplex32x32.png in Resources */,
 				123F3E0819A2786300441B9C /* JBFMovieListingViewController.xib in Resources */,
 				123AA1B319A523FF00A16101 /* blank_poster.jpg in Resources */,
 				123F3DD719A26D8600441B9C /* Credits.rtf in Resources */,
+				12D46BDA1C6AE2AD00C8B4F7 /* movieplex128x128.png in Resources */,
 				123F3DFE19A277E000441B9C /* JBFMovieListingWindowController.xib in Resources */,
+				12D46BD71C6AE2AD00C8B4F7 /* movieplex22x22.png in Resources */,
 				123F3DDD19A26D8600441B9C /* MainMenu.xib in Resources */,
+				12D46BE01C6AE37A00C8B4F7 /* movieplex1024x1024.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +369,7 @@
 				8118402C1C6911DE001A2C81 /* JBFMovieSyncer.m in Sources */,
 				123F3E0719A2786300441B9C /* JBFMovieListingViewController.m in Sources */,
 				8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */,
-				123F3E1019A27B6100441B9C /* JBFRottenTomatoesMovieSearch.m in Sources */,
+				123F3E1019A27B6100441B9C /* JBFMovieSearch.m in Sources */,
 				123F3DD319A26D8600441B9C /* main.m in Sources */,
 				123F3DDA19A26D8600441B9C /* JBFAppDelegate.m in Sources */,
 				12D46BD01C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m in Sources */,

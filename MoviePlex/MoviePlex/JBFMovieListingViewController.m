@@ -52,8 +52,10 @@
     if(movie.mpaaRating!=nil)
         result.mpaaTextField.stringValue = movie.mpaaRating;
     
-    result.yearTextField.stringValue = [NSString stringWithFormat:@"%@",movie.year];
-    result.runtimeTextField.stringValue = [NSString stringWithFormat:@"%@ mins",movie.runtime];
+    if(movie.year!=nil)
+        result.yearTextField.stringValue = movie.year;
+    if(movie.runtime!=nil)
+        result.runtimeTextField.stringValue = movie.runtime;
     
     if(movie.synopsis!=nil)
         result.synopsisTextView.textContainer.textView.string = movie.synopsis;
@@ -72,6 +74,10 @@
     if(movie.thumbnailUrl!=nil){
         NSURL *imageUrl = [NSURL URLWithString:movie.thumbnailUrl];
         result.imageView.image = [[NSImage alloc] initWithContentsOfURL:imageUrl];
+    }
+    else {
+        NSString *blankPoster = [[NSBundle mainBundle] pathForResource:@"blank_poster" ofType:@"jpg"];
+        result.imageView.image = [[NSImage alloc] initWithContentsOfFile:blankPoster];
     }
     
     [result.imageView setImageFrameStyle:NSImageFrameNone];

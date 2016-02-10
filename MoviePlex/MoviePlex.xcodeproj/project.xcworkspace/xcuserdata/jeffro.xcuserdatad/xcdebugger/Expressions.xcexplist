@@ -3,16 +3,27 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[JBFMovieSyncer finishedSearchRequest:]:JBFMovieSyncer.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[JBFMovieSearch connectionDidFinishLoading:]:JBFMovieSearch.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "connection.originalRequest.searchText">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[JBFRottenTomatoesMovieSearch executeRequestWithDelay:]:JBFRottenTomatoesMovieSearch.m">
          <PersistentStrings>
+            <PersistentString
+               value = "movieSearchUrlConnection.requestIndex">
+            </PersistentString>
             <PersistentString
                value = "_requestIndex">
             </PersistentString>
             <PersistentString
                value = "movieSearchUrlConnection.requestIndex.doubleValue*0.2">
-            </PersistentString>
-            <PersistentString
-               value = "movieSearchUrlConnection.requestIndex">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

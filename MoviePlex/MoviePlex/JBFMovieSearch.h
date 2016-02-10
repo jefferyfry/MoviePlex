@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "JBFMovie.h"
 
-@protocol JBFRottenTomatoesMovieSearchDelegate <NSObject>
+@protocol JBFMovieSearchDelegate <NSObject>
 
 -(void)finishedSearchRequest:(NSDictionary*)movieDict;
 
 @end
 
-@interface JBFRottenTomatoesMovieSearch : NSObject <NSURLConnectionDataDelegate>
+@interface JBFMovieSearch : NSObject <NSURLConnectionDataDelegate>
 
-@property (weak) id<JBFRottenTomatoesMovieSearchDelegate> delegate;
+@property (weak) id<JBFMovieSearchDelegate> delegate;
 
 -(void)searchForMovie:(NSString*)searchText withDownloadUrl:(NSString*)downloadUrl withUploadDate:(NSString*)uploadDate;
 

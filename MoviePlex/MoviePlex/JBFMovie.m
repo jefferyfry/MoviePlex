@@ -20,6 +20,7 @@
 @dynamic releaseDate;
 @dynamic uploadDate;
 @dynamic downloadUrl;
+@dynamic downloaded;
 
 -(NSString*)description{
     NSMutableString *description = [NSMutableString new];
@@ -43,6 +44,11 @@
     [description appendString:self.downloadUrl];
     [description appendString:@" cast: "];
     [description appendString:self.cast];
+    [description appendString:@" downloaded: "];
+    if(self.downloaded)
+        [description appendString:@"YES"];
+    else
+        [description appendString:@"NO"];
     return description;
 }
 

@@ -12,14 +12,15 @@
 @interface JBFMovie : NSManagedObject
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSNumber *year;
+@property (nonatomic, retain) NSString *year;
 @property (nonatomic, retain) NSString *mpaaRating;
-@property (nonatomic, retain) NSNumber *runtime;
+@property (nonatomic, retain) NSString *runtime;
 @property (nonatomic, retain) NSString *synopsis;
 @property (nonatomic, retain) NSString *thumbnailUrl;
 @property (nonatomic, retain) NSString *cast;
 @property (nonatomic, retain) NSString *releaseDate;
 @property (nonatomic, retain) NSString *uploadDate;
 @property (nonatomic, retain) NSString *downloadUrl;
+@property (nonatomic) BOOL *downloaded;
 
 @end

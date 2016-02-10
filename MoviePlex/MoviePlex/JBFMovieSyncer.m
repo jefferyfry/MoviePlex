@@ -16,10 +16,11 @@ NSString *const XpathRows = @"//tbody/tr";
 NSString *const XpathLink = @"td[1]/a/@href";
 NSString *const XpathUploadDate = @"td[@class='m']";
 
-@interface JBFMovieSyncer()
+@interface JBFMovieSyncer() <NSUserNotificationCenterDelegate>
 
-@property JBFRottenTomatoesMovieSearch *rottenTomatoesMovieSearch;
+@property JBFMovieSearch *movieSearch;
 @property (strong,nonatomic) NSMutableData *receivedData;
+@property (strong,nonatomic) NSImage *notificationImage;
 
 @end
 
@@ -27,8 +28,11 @@ NSString *const XpathUploadDate = @"td[@class='m']";
 
 -(id)init {
     if (self = [super init])  {
-        self.rottenTomatoesMovieSearch = [[JBFRottenTomatoesMovieSearch alloc] init];
-        self.rottenTomatoesMovieSearch.delegate = self;
+        self.movieSearch = [[JBFMovieSearch alloc] init];
+        self.movieSearch.delegate = self;
+        [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+        NSString *iconLoc = [[NSBundle mainBundle] pathForResource:@"movieplex22x22" ofType:@"png"];
+        _notificationImage = [[NSImage alloc] initWithContentsOfFile:iconLoc];
     }
     return self;
 }
@@ -39,6 +43,15 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     NSURLRequest *movieListingUrlRequest = [NSURLRequest requestWithURL:movieListingUrl];
     NSURLConnection *movieListingUrlConnection = [[NSURLConnection alloc] initWithRequest:movieListingUrlRequest delegate:self];
     [movieListingUrlConnection start];
+}
+
+
+-(void)resetMoviesDb {
+    NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
+    NSArray *result = [childManagedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for (id movie in result)
+        [childManagedObjectContext deleteObject:movie];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -82,13 +95,52 @@ NSString *const XpathUploadDate = @"td[@class='m']";
                 NSArray *uploadNodes = [rowNode nodesForXPath:XpathUploadDate error:&error];
                 NSString *searchString = [[linkNode.stringValue stringByDeletingPathExtension] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 NSXMLNode *updateDateNode = uploadNodes[0];
-                NSString *uploadDateString = [updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
+                NSString *uploadDateString = [self convertUploadDateString:[updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0]];
                 
-                [self.rottenTomatoesMovieSearch searchForMovie:searchString withDownloadUrl:linkString withUploadDate:uploadDateString];
+                [self.movieSearch searchForMovie:searchString withDownloadUrl:linkString withUploadDate:uploadDateString];
             }
         }
     }
     
+}
+
+-(NSString*)convertUploadDateString:(NSString*)uploadDateString {
+    if([uploadDateString containsString:@"Jan"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Jan"
+                                                           withString:@"01"];
+    else if([uploadDateString containsString:@"Feb"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Feb"
+                                                           withString:@"02"];
+    else if([uploadDateString containsString:@"Mar"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Mar"
+                                                           withString:@"03"];
+    else if([uploadDateString containsString:@"Apr"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Apr"
+                                                           withString:@"04"];
+    else if([uploadDateString containsString:@"May"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"May"
+                                                           withString:@"05"];
+    else if([uploadDateString containsString:@"Jun"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Jun"
+                                                           withString:@"06"];
+    else if([uploadDateString containsString:@"Jul"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Jul"
+                                                           withString:@"07"];
+    else if([uploadDateString containsString:@"Aug"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Aug"
+                                                           withString:@"08"];
+    else if([uploadDateString containsString:@"Sep"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Sep"
+                                                           withString:@"09"];
+    else if([uploadDateString containsString:@"Oct"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Oct"
+                                                           withString:@"10"];
+    else if([uploadDateString containsString:@"Nov"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Nov"
+                                                           withString:@"11"];
+    else //if([uploadDateString containsString:@"Dec"])
+        return [uploadDateString stringByReplacingOccurrencesOfString:@"Dec"
+                                                           withString:@"12"];
 }
 
 -(void)finishedSearchRequest:(NSMutableDictionary*)result{
@@ -98,21 +150,17 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     
     JBFMovie *newMovie = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:childManagedObjectContext];
     
-    newMovie.title = result[@"title"];
-    newMovie.year = result[@"year"] ;
-    newMovie.mpaaRating = result[@"mpaa_rating"];
-    newMovie.runtime = [NSNumber numberWithInteger: [result[@"runtime"] integerValue]];
-    newMovie.synopsis = result[@"synopsis"];
-    newMovie.thumbnailUrl = result[@"posters"][@"thumbnail"];
-    newMovie.releaseDate = result[@"release_dates"][@"theater"];
+    newMovie.title = result[@"Title"];
+    newMovie.year = result[@"Year"] ;
+    newMovie.mpaaRating = result[@"Rated"];
+    newMovie.runtime = result[@"Runtime"];
+    newMovie.synopsis = result[@"Plot"];
+    if([result[@"Poster"] containsString:@"http"])
+        newMovie.thumbnailUrl = result[@"Poster"];
+    newMovie.releaseDate = result[@"Released"];
     newMovie.downloadUrl = result[@"downloadUrl"];
     newMovie.uploadDate = result[@"uploadDate"];
-
-    NSMutableArray *castArr = [NSMutableArray new];
-    for(NSDictionary *thisCastDict in result[@"abridged_cast"]){
-        [castArr addObject:thisCastDict[@"name"]];
-    }
-    newMovie.cast = [NSString stringFromArray:castArr];
+    newMovie.cast = result[@"Actors"];
     
     NSError *error = nil;
     if (![childManagedObjectContext save:&error]) {
@@ -121,6 +169,24 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     
     if([self.delegate respondsToSelector:@selector(moviesUpdated)])
         [self.delegate moviesUpdated];
+    
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"New Movie!";
+    notification.informativeText = [NSString stringWithFormat:@"%@ was uploaded!",newMovie.title];
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    //[notification setValue:self.notificationImage forKey:@"_identityImage"];
+    if(newMovie.thumbnailUrl!=nil){
+        NSURL *imageUrl = [NSURL URLWithString:newMovie.thumbnailUrl];
+        NSImage *thumbnailImage = [[NSImage alloc] initWithContentsOfURL:imageUrl];
+        [notification setValue:thumbnailImage forKey:@"contentImage"];
+    }
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
+     shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
 }
 
 

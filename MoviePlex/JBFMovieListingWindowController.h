@@ -12,8 +12,6 @@
 
 @interface JBFMovieListingWindowController : NSWindowController <JBFMovieSyncerDelegate>
 
--(void)submitSearch:(NSString*)text;
-
 
 
 @end

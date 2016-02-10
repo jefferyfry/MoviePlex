@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JBFRottenTomatoesMovieSearch.h"
+#import "JBFMovieSearch.h"
 #import "JBFMovie.h"
 #import "JBFCoreDataStack.h"
 
@@ -17,10 +17,12 @@
 
 @end
 
-@interface JBFMovieSyncer : NSObject <NSURLConnectionDataDelegate,JBFRottenTomatoesMovieSearchDelegate>
+@interface JBFMovieSyncer : NSObject <NSURLConnectionDataDelegate,JBFMovieSearchDelegate>
 
 @property (weak) id<JBFMovieSyncerDelegate> delegate;
 
 -(void)syncMovies;
+
+-(void)resetMoviesDb;
 
 @end
