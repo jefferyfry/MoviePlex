@@ -9,7 +9,7 @@
 #import "JBFMovieSearch.h"
 #import "NSURLRequest+NSURLRequestAddition.h"
 
-NSString *const MovieAPIUrl = @"http://www.omdbapi.com/?t=%@&plot=short&r=json";
+NSString *const MovieAPIUrl = @"http://www.omdbapi.com/?t=%@&plot=full&r=json";
 
 @interface JBFMovieSearch()
 

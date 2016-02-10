@@ -56,8 +56,24 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
     
     NSString *searchText = [self.movieSearchField.stringValue stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    if([searchText length] > 2){
+    if(([searchText length] > 2) && (self.filterField.selectedSegment==1)){ //search query plus filter downloaded==NO
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[c] %@ OR synopsis CONTAINS[c] %@ OR cast CONTAINS[c] %@) AND downloaded == NO", searchText,searchText,searchText];
+        [fetchRequest setPredicate:predicate];
+    }
+    else if(([searchText length] > 2) && (self.filterField.selectedSegment==2)){ //search query plus filter downloaded==YES
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[c] %@ OR synopsis CONTAINS[c] %@ OR cast CONTAINS[c] %@) AND downloaded == YES", searchText,searchText,searchText];
+        [fetchRequest setPredicate:predicate];
+    }
+    else if([searchText length] > 2){ //search query and no filter
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[c] %@ OR synopsis CONTAINS[c] %@ OR cast CONTAINS[c] %@", searchText,searchText,searchText];
+        [fetchRequest setPredicate:predicate];
+    }
+    else if(self.filterField.selectedSegment==1){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloaded == NO"];
+        [fetchRequest setPredicate:predicate];
+    }
+    else if(self.filterField.selectedSegment==2){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloaded == YES"];
         [fetchRequest setPredicate:predicate];
     }
     

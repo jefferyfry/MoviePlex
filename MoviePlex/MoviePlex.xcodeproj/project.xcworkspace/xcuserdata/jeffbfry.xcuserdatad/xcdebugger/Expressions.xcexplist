@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[JBFMovieListingWindowController loadMovies]:JBFMovieListingWindowController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.filterField.selectedSegment">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[JBFMovieSyncer finishedSearchRequest:]:JBFMovieSyncer.m">
       </ContextState>
       <ContextState
@@ -20,6 +28,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "+[JBFJSON2MovieParser movieSearchResultFromJSONData:]:JBFJSON2MovieParser.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[JBFMovieTableCellView setDownloaded:]:JBFMovieTableCellView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[array count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[JBFRottenTomatoesMovieSearch connectionDidFinishLoading:]:JBFRottenTomatoesMovieSearch.m">
          <PersistentStrings>
             <PersistentString
@@ -28,7 +47,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "+[JBFJSON2MovieParser movieSearchResultFromJSONData:]:JBFJSON2MovieParser.m">
+         contextName = "-[JBFMovieListingViewController tableView:viewForTableColumn:row:]:JBFMovieListingViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "movie.downloaded">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

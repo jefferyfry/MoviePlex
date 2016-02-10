@@ -15,11 +15,11 @@
 @property (weak) IBOutlet NSTextField *runtimeTextField;
 @property (weak) IBOutlet NSTextField *castTextField;
 @property (weak) IBOutlet NSImageView *thumbnailImage;
-@property IBOutlet NSTextView *synopsisTextView;
 @property (weak) IBOutlet NSTextField *releaseDateTextField;
 @property (weak) IBOutlet NSTextField *uploadDateTextField;
-@property (weak) IBOutlet NSButton *downloadNow;
-@property (weak) IBOutlet NSScrollView *synopsisScrollview;
+@property (weak) IBOutlet NSButton *downloadNowButton;
+@property (weak) IBOutlet NSButton *downloadedCheckbox;
+@property (weak) IBOutlet NSTextField *synopsisTextField;
 @property (nonatomic,strong) NSString *downloadUrl;
 
 @end

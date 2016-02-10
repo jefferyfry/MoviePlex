@@ -58,8 +58,7 @@
         result.runtimeTextField.stringValue = movie.runtime;
     
     if(movie.synopsis!=nil)
-        result.synopsisTextView.textContainer.textView.string = movie.synopsis;
-    [result.synopsisTextView.textContainer.textView setEditable:NO];
+        result.synopsisTextField.stringValue = movie.synopsis;
     
     if(movie.cast!=nil)
         result.castTextField.stringValue = movie.cast;
@@ -70,6 +69,11 @@
     
     if(movie.downloadUrl!=nil)
         result.downloadUrl = movie.downloadUrl;
+    
+    if(movie.downloaded)
+        result.downloadedCheckbox.state = NSOnState;
+    else
+        result.downloadedCheckbox.state = NSOffState;
     
     if(movie.thumbnailUrl!=nil){
         NSURL *imageUrl = [NSURL URLWithString:movie.thumbnailUrl];

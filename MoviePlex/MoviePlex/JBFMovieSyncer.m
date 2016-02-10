@@ -161,6 +161,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     newMovie.downloadUrl = result[@"downloadUrl"];
     newMovie.uploadDate = result[@"uploadDate"];
     newMovie.cast = result[@"Actors"];
+    newMovie.downloaded = NO;
     
     NSError *error = nil;
     if (![childManagedObjectContext save:&error]) {
