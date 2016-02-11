@@ -22,7 +22,7 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+{    
     [NSApp activateIgnoringOtherApps:YES];
     
     //initialize the main viewing window

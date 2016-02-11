@@ -20,6 +20,9 @@
 @property (weak) IBOutlet NSButton *downloadNowButton;
 @property (weak) IBOutlet NSButton *downloadedCheckbox;
 @property (weak) IBOutlet NSTextField *synopsisTextField;
+@property (weak) IBOutlet NSProgressIndicator *downloadProgressIndicator;
+@property (weak) IBOutlet NSTextField *downloadLabelField;
 @property (nonatomic,strong) NSString *downloadUrl;
+@property (weak) IBOutlet NSButton *downloadCancelButton;
 
 @end

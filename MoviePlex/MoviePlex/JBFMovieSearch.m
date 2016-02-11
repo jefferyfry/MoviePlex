@@ -9,7 +9,8 @@
 #import "JBFMovieSearch.h"
 #import "NSURLRequest+NSURLRequestAddition.h"
 
-NSString *const MovieAPIUrl = @"http://www.omdbapi.com/?t=%@&plot=full&r=json";
+NSString *const MovieTitleAPIUrl = @"http://www.omdbapi.com/?t=%@&plot=full&r=json";
+NSString *const MovieTitleYearAPIUrl = @"http://www.omdbapi.com/?t=%@&y=%@plot=full&r=json";
 
 @interface JBFMovieSearch()
 
@@ -29,15 +30,26 @@ NSString *const MovieAPIUrl = @"http://www.omdbapi.com/?t=%@&plot=full&r=json";
 
 -(void)searchForMovie:(NSString*)searchText withDownloadUrl:(NSString*)downloadUrl withUploadDate:(NSString*)uploadDate
 {
-    NSString *urlEncodedSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    //[searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *searchMovieUrlString = [NSString stringWithFormat:MovieAPIUrl,urlEncodedSearchText];
-    NSURL *searchMovieUrl = [NSURL URLWithString:searchMovieUrlString];
+    NSURL *searchMovieUrl;
+    if([searchText containsString:@"("]&&[searchText containsString:@")"]){ //search by string and year
+        NSInteger start = [searchText rangeOfString:@"("].location+1;
+        NSString *yearString = [[searchText substringFromIndex:start] substringToIndex:5];
+        searchText = [searchText substringToIndex:start-1];
+        NSString *urlEncodedSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *searchMovieUrlString = [NSString stringWithFormat:MovieTitleYearAPIUrl,urlEncodedSearchText,yearString];
+        searchMovieUrl = [NSURL URLWithString:searchMovieUrlString];
+    }
+    else { //search by string only
+        NSString *urlEncodedSearchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *searchMovieUrlString = [NSString stringWithFormat:MovieTitleAPIUrl,urlEncodedSearchText];
+        searchMovieUrl = [NSURL URLWithString:searchMovieUrlString];
+    }
+    
     NSURLRequest *searchMovieUrlRequest = [NSURLRequest requestWithURL:searchMovieUrl];
     searchMovieUrlRequest.downloadUrl = downloadUrl;
     searchMovieUrlRequest.uploadDate = uploadDate;
     searchMovieUrlRequest.searchText = searchText;
-    double delay = self.requestIndex.doubleValue * 0.1;
+    double delay = self.requestIndex.doubleValue * 0.05;
     self.requestIndex = [NSNumber numberWithInt:((self.requestIndex.intValue+1)%1000)];
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC);

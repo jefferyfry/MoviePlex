@@ -95,7 +95,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
                 NSArray *uploadNodes = [rowNode nodesForXPath:XpathUploadDate error:&error];
                 NSString *searchString = [[linkNode.stringValue stringByDeletingPathExtension] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 NSXMLNode *updateDateNode = uploadNodes[0];
-                NSString *uploadDateString = [self convertUploadDateString:[updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0]];
+                NSString *uploadDateString = [updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
                 
                 [self.movieSearch searchForMovie:searchString withDownloadUrl:linkString withUploadDate:uploadDateString];
             }
@@ -104,44 +104,14 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     
 }
 
--(NSString*)convertUploadDateString:(NSString*)uploadDateString {
-    if([uploadDateString containsString:@"Jan"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Jan"
-                                                           withString:@"01"];
-    else if([uploadDateString containsString:@"Feb"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Feb"
-                                                           withString:@"02"];
-    else if([uploadDateString containsString:@"Mar"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Mar"
-                                                           withString:@"03"];
-    else if([uploadDateString containsString:@"Apr"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Apr"
-                                                           withString:@"04"];
-    else if([uploadDateString containsString:@"May"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"May"
-                                                           withString:@"05"];
-    else if([uploadDateString containsString:@"Jun"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Jun"
-                                                           withString:@"06"];
-    else if([uploadDateString containsString:@"Jul"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Jul"
-                                                           withString:@"07"];
-    else if([uploadDateString containsString:@"Aug"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Aug"
-                                                           withString:@"08"];
-    else if([uploadDateString containsString:@"Sep"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Sep"
-                                                           withString:@"09"];
-    else if([uploadDateString containsString:@"Oct"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Oct"
-                                                           withString:@"10"];
-    else if([uploadDateString containsString:@"Nov"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Nov"
-                                                           withString:@"11"];
-    else //if([uploadDateString containsString:@"Dec"])
-        return [uploadDateString stringByReplacingOccurrencesOfString:@"Dec"
-                                                           withString:@"12"];
+-(NSString*)convertReleaseDateString:(NSString*)releaseDateString {
+    NSArray *array = [releaseDateString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if([array count]>2)
+        return [NSString stringWithFormat:@"%@-%@-%@",array[2],array[1],array[0]];
+    else
+        return releaseDateString;
 }
+
 
 -(void)finishedSearchRequest:(NSMutableDictionary*)result{
     //we have an update
@@ -157,10 +127,10 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     newMovie.synopsis = result[@"Plot"];
     if([result[@"Poster"] containsString:@"http"])
         newMovie.thumbnailUrl = result[@"Poster"];
-    newMovie.releaseDate = result[@"Released"];
+    newMovie.releaseDate = [self convertReleaseDateString:result[@"Released"]];
     newMovie.downloadUrl = result[@"downloadUrl"];
     newMovie.uploadDate = result[@"uploadDate"];
-    newMovie.cast = result[@"Actors"];
+    newMovie.actors = result[@"Actors"];
     newMovie.downloaded = NO;
     
     NSError *error = nil;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Xcode 7.0">
     <entity name="Movie" syncable="YES">
-        <attribute name="cast" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="actors" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="downloaded" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="downloadUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mpaaRating" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,6 +14,6 @@
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Movie" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

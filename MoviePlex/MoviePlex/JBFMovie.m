@@ -16,7 +16,7 @@
 @dynamic runtime;
 @dynamic synopsis;
 @dynamic thumbnailUrl;
-@dynamic cast;
+@dynamic actors;
 @dynamic releaseDate;
 @dynamic uploadDate;
 @dynamic downloadUrl;
@@ -43,7 +43,7 @@
     [description appendString:@" downloadUrl: "];
     [description appendString:self.downloadUrl];
     [description appendString:@" cast: "];
-    [description appendString:self.cast];
+    [description appendString:self.actors];
     [description appendString:@" downloaded: "];
     if(self.downloaded)
         [description appendString:@"YES"];

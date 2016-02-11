@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0C6F938070E4570FBDF33CF5E18AF9060B1C7FC8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0C6F938070E4570FBDF33CF5E18AF9060B1C7FC8" : 0,
+    "14A8CABBE83A1407AE51F278102C168C1DA5874A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DD289F89-8C8C-4FBE-BF11-20553399FE14",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0C6F938070E4570FBDF33CF5E18AF9060B1C7FC8" : "MoviePlex\/",
+    "14A8CABBE83A1407AE51F278102C168C1DA5874A" : "UW_IOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MoviePlex",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MoviePlex\/MoviePlex.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jefferyfry\/MoviePlex.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C6F938070E4570FBDF33CF5E18AF9060B1C7FC8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jefferyfry\/UW_IOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "14A8CABBE83A1407AE51F278102C168C1DA5874A"
+    }
+  ]
+}
