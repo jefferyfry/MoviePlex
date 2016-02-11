@@ -11,7 +11,8 @@
 #import "JBFMovie.h"
 #import "NSString+NSStringAddition.h"
 
-NSString *const MovieListingUrl = @"http://brentium.sea.i.extrahop.com/movies/";
+//NSString *const MovieListingUrl = @"http://brentium.sea.i.extrahop.com/movies/";
+NSString *const MovieListingUrl = @"https://brentium.sea.i.extrahop.com/movies/";
 NSString *const XpathRows = @"//tbody/tr";
 NSString *const XpathLink = @"td[1]/a/@href";
 NSString *const XpathUploadDate = @"td[@class='m']";
@@ -158,6 +159,18 @@ NSString *const XpathUploadDate = @"td[@class='m']";
      shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    //if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+        //if ([trustedHosts containsObject:challenge.protectionSpace.host])
+            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 

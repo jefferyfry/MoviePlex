@@ -35,7 +35,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [self.window setTitle:@"MoviePlex 0.1"];
+    [self.window setTitle:@"MoviePlex 0.2"];
     self.movieSearchListingViewController = [JBFMovieListingViewController new];
     self.movieSearchListingViewController.view.frame = [self.window.contentView bounds];
     self.movieSearchListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;

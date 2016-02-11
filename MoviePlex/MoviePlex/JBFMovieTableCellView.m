@@ -118,7 +118,7 @@
     
     if (expectedLength != NSURLResponseUnknownLength) {
         double percentComplete = (self.bytesReceived/(float)expectedLength)*100.0;
-        NSLog(@"%.2f",percentComplete);
+        //NSLog(@"%.2f",percentComplete);
         [self.downloadProgressIndicator setDoubleValue:percentComplete];
         //[self.downloadLabelField setStringValue:[NSString stringWithFormat:@"%ld of %lld bytes",self.bytesReceived,expectedLength]];
     }
@@ -132,6 +132,22 @@
     self.downloadedCheckbox.state = NSOnState;
     [self setDownloaded:NSOnState];
     [self.downloadLabelField setStringValue:@"Download complete."];
+    [self.downloadCancelButton setHidden:YES];
+}
+
+- (BOOL)download:(NSURLDownload *)download canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+    
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)download:(NSURLDownload *)download didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    //if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+        //if ([trustedHosts containsObject:challenge.protectionSpace.host])
+            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 
