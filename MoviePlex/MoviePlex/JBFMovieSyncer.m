@@ -53,6 +53,11 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     NSArray *result = [childManagedObjectContext executeFetchRequest:fetchRequest error:nil];
     for (id movie in result)
         [childManagedObjectContext deleteObject:movie];
+    NSError *error = nil;
+    if (![childManagedObjectContext save:&error]) {
+        NSLog(@"Error deleting all movies in child MOC: %@", error);
+    }
+    [self syncMovies];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -128,10 +133,16 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     newMovie.synopsis = result[@"Plot"];
     if([result[@"Poster"] containsString:@"http"])
         newMovie.thumbnailUrl = result[@"Poster"];
-    newMovie.releaseDate = [self convertReleaseDateString:result[@"Released"]];
+    if([result[@"Released"] isEqualToString:@"N/A"])
+        newMovie.releaseDate = @" ";
+    else
+        newMovie.releaseDate = [self convertReleaseDateString:result[@"Released"]];
     newMovie.downloadUrl = result[@"downloadUrl"];
     newMovie.uploadDate = result[@"uploadDate"];
-    newMovie.rating = [result[@"Metascore"] stringByAppendingString:@"/100"];
+    if([result[@"Metascore"] isEqualToString:@"N/A"])
+        newMovie.rating = @" ";
+    else
+        newMovie.rating = [result[@"Metascore"] stringByAppendingString:@"/100"];
     newMovie.actors = result[@"Actors"];
     newMovie.downloaded = NO;
     

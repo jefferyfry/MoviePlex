@@ -36,9 +36,9 @@
     self.statusMenu = [[NSMenu alloc] init];
     
     //add option for reset DB
-//    [self.statusMenu addItemWithTitle:@"Reset Movie DB" action:@selector(resetMovieDb) keyEquivalent:@""];
-//    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-//    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
+    [self.statusMenu addItemWithTitle:@"Reset Movie DB" action:@selector(resetMovieDb) keyEquivalent:@""];
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
     
     //add option for sync now
 //    [self.statusMenu addItemWithTitle:@"Sync Now" action:@selector(syncMovies) keyEquivalent:@""];
@@ -74,10 +74,18 @@
 - (void)syncMovies {
     [self.movieSyncer syncMovies];
 }
-//
-//- (void)resetMovieDb {
-//    [self.movieSyncer resetMoviesDb];
-//}
+
+- (void)resetMovieDb {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setMessageText:@"Reset the movie database?"];
+    [alert setInformativeText:@"This will take a few moments to delete the movie metadata and re-sync."];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [self.movieSyncer resetMoviesDb];
+    }
+}
 
 - (void)exit:(id)sender {
     [NSApp terminate:self];

@@ -35,7 +35,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [self.window setTitle:@"MoviePlex 0.2"];
+    [self.window setTitle:@"MoviePlex 0.3"];
     self.movieSearchListingViewController = [JBFMovieListingViewController new];
     self.movieSearchListingViewController.view.frame = [self.window.contentView bounds];
     self.movieSearchListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;
@@ -82,8 +82,10 @@
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
     else if(self.sortField.selectedSegment==1)
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:NO]];
-    else //if(self.sortField.selectedSegment==2)
+    else if(self.sortField.selectedSegment==2)
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"uploadDate" ascending:NO]];
+    else if(self.sortField.selectedSegment==3)
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"rating" ascending:NO]];
     
     NSError *error = nil;
     NSArray *movies = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
