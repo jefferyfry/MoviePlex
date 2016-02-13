@@ -24,5 +24,6 @@
 @property (weak) IBOutlet NSTextField *downloadLabelField;
 @property (nonatomic,strong) NSString *downloadUrl;
 @property (weak) IBOutlet NSButton *downloadCancelButton;
+@property (weak) IBOutlet NSTextField *ratingTextField;
 
 @end

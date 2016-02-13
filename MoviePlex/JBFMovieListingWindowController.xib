@@ -17,24 +17,24 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="832" height="472"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="860" height="472"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <value key="minSize" type="size" width="480" height="270"/>
+            <value key="minSize" type="size" width="860" height="270"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="832" height="472"/>
+                <rect key="frame" x="0.0" y="0.0" width="860" height="472"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="FF532AFF-F6CA-4936-952C-573EDC509BE8" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="hyF-Jx-myy">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="AE8DE513-6A8E-4D88-979A-A50211B1AF2D" label="Movie Search" paletteLabel="Movie Search" id="MjZ-yw-DI4">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="96" height="22"/>
+                        <size key="minSize" width="96" height="19"/>
                         <size key="maxSize" width="120" height="22"/>
                         <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="vBe-34-avR">
-                            <rect key="frame" x="0.0" y="14" width="120" height="22"/>
+                            <rect key="frame" x="0.0" y="14" width="120" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="9Nc-GJ-SUy">
-                                <font key="font" metaFont="system"/>
+                                <font key="font" size="11" name=".HelveticaNeueDeskInterface-Regular"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
@@ -47,16 +47,17 @@
                     <toolbarItem implicitItemIdentifier="492C604D-460B-416C-9F28-FA111D0BB965" label="Sort" paletteLabel="Sort" id="ete-Qk-HVE">
                         <nil key="toolTip"/>
                         <size key="minSize" width="100" height="25"/>
-                        <size key="maxSize" width="304" height="28"/>
+                        <size key="maxSize" width="365" height="28"/>
                         <segmentedControl key="view" verticalHuggingPriority="750" id="GCa-Bv-UAw">
-                            <rect key="frame" x="0.0" y="14" width="304" height="28"/>
+                            <rect key="frame" x="0.0" y="14" width="268" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="lAE-Lj-cFn">
-                                <font key="font" metaFont="system"/>
+                                <font key="font" size="11" name=".HelveticaNeueDeskInterface-Regular"/>
                                 <segments>
-                                    <segment label="Title" toolTip="Sort movies." width="100"/>
-                                    <segment label="Release Date" width="100" selected="YES" tag="1"/>
-                                    <segment label="Upload Date" width="100"/>
+                                    <segment label="Title" toolTip="Sort movies." width="50"/>
+                                    <segment label="Release Date" width="80" selected="YES" tag="1"/>
+                                    <segment label="Upload Date" width="80"/>
+                                    <segment label="Rating" width="53"/>
                                 </segments>
                             </segmentedCell>
                             <connections>
@@ -66,17 +67,17 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="181CB20D-5645-43FC-9386-56C9AE34BF77" label="Filter" paletteLabel="Filter" id="ylB-p3-vu0">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="100" height="25"/>
-                        <size key="maxSize" width="329" height="28"/>
+                        <size key="minSize" width="214" height="25"/>
+                        <size key="maxSize" width="224" height="28"/>
                         <segmentedControl key="view" verticalHuggingPriority="750" id="bUO-fn-uNQ">
-                            <rect key="frame" x="0.0" y="14" width="329" height="25"/>
+                            <rect key="frame" x="0.0" y="14" width="214" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="CSi-vs-UXt">
-                                <font key="font" metaFont="system"/>
+                                <font key="font" size="11" name=".HelveticaNeueDeskInterface-Regular"/>
                                 <segments>
-                                    <segment label="All" width="100"/>
-                                    <segment label="Not Downloaded" width="125" selected="YES" tag="1"/>
-                                    <segment label="Downloaded" width="100"/>
+                                    <segment label="All" width="30"/>
+                                    <segment label="Not Downloaded" width="100" selected="YES" tag="1"/>
+                                    <segment label="Downloaded" width="80"/>
                                 </segments>
                             </segmentedCell>
                             <connections>
@@ -87,8 +88,11 @@
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="MjZ-yw-DI4"/>
+                    <toolbarItem reference="aAL-lp-pYe"/>
                     <toolbarItem reference="ete-Qk-HVE"/>
+                    <toolbarItem reference="aAL-lp-pYe"/>
                     <toolbarItem reference="ylB-p3-vu0"/>
+                    <toolbarItem reference="aAL-lp-pYe"/>
                 </defaultToolbarItems>
             </toolbar>
             <contentBorderThickness minY="32"/>

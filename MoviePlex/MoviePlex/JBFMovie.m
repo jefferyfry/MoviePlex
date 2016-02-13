@@ -19,6 +19,7 @@
 @dynamic actors;
 @dynamic releaseDate;
 @dynamic uploadDate;
+@dynamic rating;
 @dynamic downloadUrl;
 @dynamic downloaded;
 
@@ -32,6 +33,8 @@
     [description appendFormat:@"%@",self.releaseDate];
     [description appendString:@" upload date: "];
     [description appendFormat:@"%@",self.uploadDate];
+    [description appendString:@" rating: "];
+    [description appendFormat:@"%@",self.rating];
     [description appendString:@" mpaaRating: "];
     [description appendString:self.mpaaRating];
     [description appendString:@" runtime: "];

@@ -87,6 +87,11 @@
     else
         result.releaseDateTextField.stringValue = @"N/A";
     
+    if(movie.rating!=nil)
+        result.ratingTextField.stringValue = movie.rating;
+    else
+        result.ratingTextField.stringValue = @"N/A";
+    
     if(movie.downloadUrl!=nil)
         result.downloadUrl = movie.downloadUrl;
     else

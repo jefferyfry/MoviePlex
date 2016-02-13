@@ -131,6 +131,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     newMovie.releaseDate = [self convertReleaseDateString:result[@"Released"]];
     newMovie.downloadUrl = result[@"downloadUrl"];
     newMovie.uploadDate = result[@"uploadDate"];
+    newMovie.rating = [result[@"Metascore"] stringByAppendingString:@"/100"];
     newMovie.actors = result[@"Actors"];
     newMovie.downloaded = NO;
     
