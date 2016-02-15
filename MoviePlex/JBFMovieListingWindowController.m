@@ -16,6 +16,7 @@
 @property (weak) IBOutlet NSSearchField *movieSearchField;
 @property (weak) IBOutlet NSSegmentedControl *sortField;
 @property (weak) IBOutlet NSSegmentedControl *filterField;
+@property (weak) IBOutlet NSSplitView *splitView;
 
 -(void)loadMovies;
 

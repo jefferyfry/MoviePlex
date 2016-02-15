@@ -10,6 +10,7 @@
                 <outlet property="filterField" destination="bUO-fn-uNQ" id="glk-kc-rd4"/>
                 <outlet property="movieSearchField" destination="vBe-34-avR" id="8w9-zx-F76"/>
                 <outlet property="sortField" destination="GCa-Bv-UAw" id="vvf-XT-8c6"/>
+                <outlet property="splitView" destination="3M6-MZ-KtE" id="AOl-xQ-hRS"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -23,6 +24,31 @@
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="860" height="472"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <splitView dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3M6-MZ-KtE">
+                        <rect key="frame" x="0.0" y="0.0" width="860" height="472"/>
+                        <subviews>
+                            <customView fixedFrame="YES" id="nT7-lu-Wea">
+                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="472"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </customView>
+                            <customView fixedFrame="YES" id="xtT-yA-Gfx">
+                                <rect key="frame" x="144.5" y="0.0" width="715.5" height="472"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </customView>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                            <real value="250"/>
+                        </holdingPriorities>
+                    </splitView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3M6-MZ-KtE" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="GnN-Ij-zSM"/>
+                    <constraint firstAttribute="trailing" secondItem="3M6-MZ-KtE" secondAttribute="trailing" id="cvy-EO-Lpa"/>
+                    <constraint firstItem="3M6-MZ-KtE" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="lrO-e9-Nco"/>
+                    <constraint firstAttribute="bottom" secondItem="3M6-MZ-KtE" secondAttribute="bottom" id="xNI-c4-aGt"/>
+                </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="FF532AFF-F6CA-4936-952C-573EDC509BE8" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="hyF-Jx-myy">
                 <allowedToolbarItems>
@@ -46,8 +72,8 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="aAL-lp-pYe"/>
                     <toolbarItem implicitItemIdentifier="492C604D-460B-416C-9F28-FA111D0BB965" label="Sort" paletteLabel="Sort" id="ete-Qk-HVE">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="100" height="25"/>
-                        <size key="maxSize" width="365" height="28"/>
+                        <size key="minSize" width="200" height="25"/>
+                        <size key="maxSize" width="300" height="28"/>
                         <segmentedControl key="view" verticalHuggingPriority="750" id="GCa-Bv-UAw">
                             <rect key="frame" x="0.0" y="14" width="268" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -87,11 +113,9 @@
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
+                    <toolbarItem reference="aAL-lp-pYe"/>
                     <toolbarItem reference="MjZ-yw-DI4"/>
-                    <toolbarItem reference="aAL-lp-pYe"/>
                     <toolbarItem reference="ete-Qk-HVE"/>
-                    <toolbarItem reference="aAL-lp-pYe"/>
-                    <toolbarItem reference="ylB-p3-vu0"/>
                     <toolbarItem reference="aAL-lp-pYe"/>
                 </defaultToolbarItems>
             </toolbar>

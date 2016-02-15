@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString *releaseDate;
 @property (nonatomic, retain) NSString *uploadDate;
 @property (nonatomic, retain) NSString *rating;
+@property (nonatomic, retain) NSString *genre;
 @property (nonatomic, retain) NSString *downloadUrl;
 @property (nonatomic) BOOL downloaded;
 

@@ -22,6 +22,7 @@
 @dynamic rating;
 @dynamic downloadUrl;
 @dynamic downloaded;
+@dynamic genre;
 
 -(NSString*)description{
     NSMutableString *description = [NSMutableString new];
@@ -35,6 +36,8 @@
     [description appendFormat:@"%@",self.uploadDate];
     [description appendString:@" rating: "];
     [description appendFormat:@"%@",self.rating];
+    [description appendString:@" genre: "];
+    [description appendFormat:@"%@",self.genre];
     [description appendString:@" mpaaRating: "];
     [description appendString:self.mpaaRating];
     [description appendString:@" runtime: "];

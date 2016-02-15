@@ -131,6 +131,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     newMovie.mpaaRating = result[@"Rated"];
     newMovie.runtime = result[@"Runtime"];
     newMovie.synopsis = result[@"Plot"];
+    newMovie.genre = result[@"Genre"];
     if([result[@"Poster"] containsString:@"http"])
         newMovie.thumbnailUrl = result[@"Poster"];
     if([result[@"Released"] isEqualToString:@"N/A"])
