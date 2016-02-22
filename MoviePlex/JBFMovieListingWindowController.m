@@ -8,15 +8,19 @@
 
 #import "JBFMovieListingWindowController.h"
 #import "JBFCoreDataStack.h"
+#import "JBFGenre.h"
 @import CoreData;
 
-@interface JBFMovieListingWindowController ()
+@interface JBFMovieListingWindowController () <NSSplitViewDelegate,NSOutlineViewDataSource>
 
 @property JBFMovieListingViewController *movieSearchListingViewController;
 @property (weak) IBOutlet NSSearchField *movieSearchField;
 @property (weak) IBOutlet NSSegmentedControl *sortField;
 @property (weak) IBOutlet NSSegmentedControl *filterField;
 @property (weak) IBOutlet NSSplitView *splitView;
+@property (weak) IBOutlet NSOutlineView *sidebarView;
+@property NSArray *genres;
+@property NSArray *downloadStatus;
 
 -(void)loadMovies;
 
@@ -28,7 +32,7 @@
 {
     self = [super initWithWindowNibName:NSStringFromClass(self.class)];
     if (self) {
-        // Initialization code here.
+        [self.splitView setDelegate:self];
     }
     return self;
 }
@@ -36,11 +40,20 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [self.window setTitle:@"MoviePlex 0.3"];
+    [self.window setTitle:@"MoviePlex 0.4"];
     self.movieSearchListingViewController = [JBFMovieListingViewController new];
     self.movieSearchListingViewController.view.frame = [self.window.contentView bounds];
     self.movieSearchListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;
-    [self.window.contentView addSubview:self.movieSearchListingViewController.view];
+    [self.splitView replaceSubview:[self.splitView subviews][1] with:self.movieSearchListingViewController.view];
+    //[self.splitView adjustSubviews];
+    [self.splitView setDelegate:self];
+    [self loadGenres];
+    self.downloadStatus = [NSArray arrayWithObjects:@"Yes",@"No", nil];
+   
+    
+    [self.sidebarView setDataSource:self];
+    [self.sidebarView reloadData];
+    
     
     [self.sortField setSelectedSegment:0];
     
@@ -48,6 +61,17 @@
     
     //load core data movies into array
     [self loadMovies];
+}
+
+-(void)loadGenres {
+    NSManagedObjectContext* managedObjectContext = [[JBFCoreDataStack sharedStack] rootManagedObjectContext];
+    
+    //load movies from core data into array
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Genre"];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    
+    NSError *error = nil;
+    self.genres = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
 }
 
 -(void)loadMovies {
@@ -109,6 +133,71 @@
 
 -(void)moviesUpdated {
     [self loadMovies];
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+{
+    return YES;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+    if(item==nil&&index==0)
+        return @"Genres";
+    else if(item==nil)
+        return @"Downloaded";
+    else if([item isEqualToString:@"Downloaded"])
+        return self.downloadStatus[index];
+    else
+        return self.genres[index];
+        
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+    if(item==nil)
+        return YES;
+    else if([item isKindOfClass:[NSString class]]){
+        if([item isEqualToString:@"Downloaded"]||[item isEqualToString:@"Genres"])
+            return YES;
+        else
+            return NO;
+    }
+    else
+        return NO;
+}
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+    if(item==nil)
+        return 2;
+    else if([item isKindOfClass:[NSString class]]){
+        if([item isEqualToString:@"Downloaded"])
+            return [self.downloadStatus count];
+        else
+            return [self.genres count];
+    }
+    else
+        return 0;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    if(item==nil)
+        return @"-";
+    else if ([item isKindOfClass:[NSString class]])
+        return item;
+    else { //genre
+        JBFGenre *genre = (JBFGenre*)item;
+        return [NSString stringWithFormat:@"%@ (%@)",genre.name,genre.count];
+    }
+}
+
+- (NSRect)splitView:(NSSplitView *)splitView
+      effectiveRect:(NSRect)proposedEffectiveRect
+       forDrawnRect:(NSRect)drawnRect
+   ofDividerAtIndex:(NSInteger)dividerIndex{
+    return NSZeroRect;
 }
 
 @end

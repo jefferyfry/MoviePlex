@@ -10,6 +10,7 @@
 #import "JBFCoreDataStack.h"
 #import "JBFMovie.h"
 #import "NSString+NSStringAddition.h"
+#import "JBFGenre.h"
 
 //NSString *const MovieListingUrl = @"http://brentium.sea.i.extrahop.com/movies/";
 NSString *const MovieListingUrl = @"https://brentium.sea.i.extrahop.com/movies/";
@@ -131,7 +132,10 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     newMovie.mpaaRating = result[@"Rated"];
     newMovie.runtime = result[@"Runtime"];
     newMovie.synopsis = result[@"Plot"];
-    newMovie.genre = result[@"Genre"];
+    if(result[@"Genre"]!=nil){
+        newMovie.genre = result[@"Genre"];
+        [self addGenres:result[@"Genre"]];
+    }
     if([result[@"Poster"] containsString:@"http"])
         newMovie.thumbnailUrl = result[@"Poster"];
     if([result[@"Released"] isEqualToString:@"N/A"])
@@ -184,6 +188,39 @@ NSString *const XpathUploadDate = @"td[@class='m']";
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
     
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+-(void)addGenres:(NSString*)genres {
+    NSManagedObjectContext* managedObjectContext = [[JBFCoreDataStack sharedStack] rootManagedObjectContext];
+    NSArray *names = [genres componentsSeparatedByString:@","];
+    for(id name in names){
+        NSString *nameTrim = [name stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        //query for genre, if it doesn't exist then add it
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Genre"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", nameTrim];
+        [fetchRequest setPredicate:predicate];
+        NSError *error = nil;
+        NSArray *queryArr = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if([queryArr count]==0){
+            JBFGenre *newGenre = [NSEntityDescription insertNewObjectForEntityForName:@"Genre" inManagedObjectContext:managedObjectContext];
+            newGenre.name = nameTrim;
+            newGenre.count = [NSNumber numberWithInt:1];
+            NSError *error = nil;
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Error saving inserting new genre in child MOC: %@", error);
+            }
+        }
+        else {
+            JBFGenre *genre = queryArr[0];
+            int value = [genre.count intValue];
+            genre.count = [NSNumber numberWithInt:value + 1];
+            
+            NSError *error = nil;
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Error saving genre in child MOC: %@", error);
+            }
+        }
+    }
 }
 
 

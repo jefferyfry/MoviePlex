@@ -35,6 +35,7 @@
 		12D46BDC1C6AE2AD00C8B4F7 /* movieplex16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BD61C6AE2AD00C8B4F7 /* movieplex16x16.png */; };
 		12D46BDE1C6AE32700C8B4F7 /* movieplex64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BDD1C6AE32700C8B4F7 /* movieplex64x64.png */; };
 		12D46BE01C6AE37A00C8B4F7 /* movieplex1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D46BDF1C6AE37A00C8B4F7 /* movieplex1024x1024.png */; };
+		12D68BDB1C7AA90A000E558D /* JBFGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D68BDA1C7AA90A000E558D /* JBFGenre.m */; };
 		8118402C1C6911DE001A2C81 /* JBFMovieSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */; };
 		8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */; };
 		812976A61C6A5DC8007C968C /* NSString+NSStringAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 812976A51C6A5DC8007C968C /* NSString+NSStringAddition.m */; };
@@ -94,6 +95,8 @@
 		12D46BD61C6AE2AD00C8B4F7 /* movieplex16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex16x16.png; sourceTree = "<group>"; };
 		12D46BDD1C6AE32700C8B4F7 /* movieplex64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex64x64.png; sourceTree = "<group>"; };
 		12D46BDF1C6AE37A00C8B4F7 /* movieplex1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieplex1024x1024.png; sourceTree = "<group>"; };
+		12D68BD91C7AA90A000E558D /* JBFGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFGenre.h; sourceTree = "<group>"; };
+		12D68BDA1C7AA90A000E558D /* JBFGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFGenre.m; sourceTree = "<group>"; };
 		8118402A1C6911DE001A2C81 /* JBFMovieSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFMovieSyncer.h; sourceTree = "<group>"; };
 		8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFMovieSyncer.m; sourceTree = "<group>"; };
 		8118402D1C6925F9001A2C81 /* JBFCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFCoreDataStack.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				123F3E0F19A27B6100441B9C /* JBFMovieSearch.m */,
 				123F3E1119A27B7A00441B9C /* JBFMovie.h */,
 				123F3E1219A27B7A00441B9C /* JBFMovie.m */,
+				12D68BD91C7AA90A000E558D /* JBFGenre.h */,
+				12D68BDA1C7AA90A000E558D /* JBFGenre.m */,
 				12D46BCB1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld */,
 				8118402A1C6911DE001A2C81 /* JBFMovieSyncer.h */,
 				8118402B1C6911DE001A2C81 /* JBFMovieSyncer.m */,
@@ -361,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D68BDB1C7AA90A000E558D /* JBFGenre.m in Sources */,
 				123F3DFD19A277E000441B9C /* JBFMovieListingWindowController.m in Sources */,
 				812976A61C6A5DC8007C968C /* NSString+NSStringAddition.m in Sources */,
 				12D46BCD1C67ED1B00C8B4F7 /* MoviePlex.xcdatamodeld in Sources */,
@@ -463,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -496,7 +502,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 			};
 			name = Release;

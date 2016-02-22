@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Xcode 7.0">
+    <entity name="Genre" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Movie" syncable="YES">
         <attribute name="actors" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="downloaded" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -17,5 +21,6 @@
     </entity>
     <elements>
         <element name="Movie" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="Genre" positionX="0" positionY="99" width="128" height="75"/>
     </elements>
 </model>

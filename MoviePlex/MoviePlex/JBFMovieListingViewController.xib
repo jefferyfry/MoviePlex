@@ -14,11 +14,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="625" height="330"/>
+            <rect key="frame" x="0.0" y="0.0" width="625" height="313"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="157" horizontalPageScroll="10" verticalLineScroll="157" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch4-2V-xv0">
-                    <rect key="frame" x="0.0" y="0.0" width="625" height="330"/>
+                    <rect key="frame" x="0.0" y="-17" width="625" height="330"/>
                     <clipView key="contentView" id="VNm-eC-1b5">
                         <rect key="frame" x="1" y="1" width="623" height="328"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,10 +288,10 @@
             <constraints>
                 <constraint firstItem="ch4-2V-xv0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hak-pF-22T"/>
                 <constraint firstAttribute="trailing" secondItem="ch4-2V-xv0" secondAttribute="trailing" id="aFK-FR-FXQ"/>
-                <constraint firstAttribute="bottom" secondItem="ch4-2V-xv0" secondAttribute="bottom" id="rhF-EY-dsV"/>
+                <constraint firstAttribute="bottom" secondItem="ch4-2V-xv0" secondAttribute="bottom" constant="-17" id="rhF-EY-dsV"/>
                 <constraint firstItem="ch4-2V-xv0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="vdN-dw-sAc"/>
             </constraints>
-            <point key="canvasLocation" x="318.5" y="302"/>
+            <point key="canvasLocation" x="318.5" y="343.5"/>
         </customView>
     </objects>
     <resources>
