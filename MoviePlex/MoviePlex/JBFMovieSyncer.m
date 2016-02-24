@@ -124,52 +124,53 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     //we have an update
     //therefore persist it and then notify
     NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
-    
-    JBFMovie *newMovie = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:childManagedObjectContext];
-    
-    newMovie.title = result[@"Title"];
-    newMovie.year = result[@"Year"] ;
-    newMovie.mpaaRating = result[@"Rated"];
-    newMovie.runtime = result[@"Runtime"];
-    newMovie.synopsis = result[@"Plot"];
-    if(result[@"Genre"]!=nil){
-        newMovie.genre = result[@"Genre"];
-        [self addGenres:result[@"Genre"]];
+    if(result[@"downloadUrl"]!=nil){
+        JBFMovie *newMovie = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:childManagedObjectContext];
+        
+        newMovie.title = result[@"Title"];
+        newMovie.year = result[@"Year"] ;
+        newMovie.mpaaRating = result[@"Rated"];
+        newMovie.runtime = result[@"Runtime"];
+        newMovie.synopsis = result[@"Plot"];
+        if(result[@"Genre"]!=nil){
+            newMovie.genre = result[@"Genre"];
+            [self addGenres:result[@"Genre"]];
+        }
+        if([result[@"Poster"] containsString:@"http"])
+            newMovie.thumbnailUrl = result[@"Poster"];
+        if([result[@"Released"] isEqualToString:@"N/A"])
+            newMovie.releaseDate = @" ";
+        else
+            newMovie.releaseDate = [self convertReleaseDateString:result[@"Released"]];
+        newMovie.downloadUrl = result[@"downloadUrl"];
+        newMovie.uploadDate = result[@"uploadDate"];
+        if([result[@"Metascore"] isEqualToString:@"N/A"])
+            newMovie.rating = @" ";
+        else
+            newMovie.rating = result[@"Metascore"];
+        newMovie.actors = result[@"Actors"];
+        newMovie.downloaded = NO;
+        
+        NSError *error = nil;
+        if (![childManagedObjectContext save:&error]) {
+            NSLog(@"Error saving inserting new movie in child MOC: %@", error);
+        }
+        
+        if([self.delegate respondsToSelector:@selector(moviesUpdated)])
+            [self.delegate moviesUpdated];
+        
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"New Movie!";
+        notification.informativeText = [NSString stringWithFormat:@"%@ was uploaded!",newMovie.title];
+        notification.soundName = NSUserNotificationDefaultSoundName;
+        //[notification setValue:self.notificationImage forKey:@"_identityImage"];
+        if(newMovie.thumbnailUrl!=nil){
+            NSURL *imageUrl = [NSURL URLWithString:newMovie.thumbnailUrl];
+            NSImage *thumbnailImage = [[NSImage alloc] initWithContentsOfURL:imageUrl];
+            [notification setValue:thumbnailImage forKey:@"contentImage"];
+        }
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
-    if([result[@"Poster"] containsString:@"http"])
-        newMovie.thumbnailUrl = result[@"Poster"];
-    if([result[@"Released"] isEqualToString:@"N/A"])
-        newMovie.releaseDate = @" ";
-    else
-        newMovie.releaseDate = [self convertReleaseDateString:result[@"Released"]];
-    newMovie.downloadUrl = result[@"downloadUrl"];
-    newMovie.uploadDate = result[@"uploadDate"];
-    if([result[@"Metascore"] isEqualToString:@"N/A"])
-        newMovie.rating = @" ";
-    else
-        newMovie.rating = result[@"Metascore"];
-    newMovie.actors = result[@"Actors"];
-    newMovie.downloaded = NO;
-    
-    NSError *error = nil;
-    if (![childManagedObjectContext save:&error]) {
-        NSLog(@"Error saving inserting new movie in child MOC: %@", error);
-    }
-    
-    if([self.delegate respondsToSelector:@selector(moviesUpdated)])
-        [self.delegate moviesUpdated];
-    
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"New Movie!";
-    notification.informativeText = [NSString stringWithFormat:@"%@ was uploaded!",newMovie.title];
-    notification.soundName = NSUserNotificationDefaultSoundName;
-    //[notification setValue:self.notificationImage forKey:@"_identityImage"];
-    if(newMovie.thumbnailUrl!=nil){
-        NSURL *imageUrl = [NSURL URLWithString:newMovie.thumbnailUrl];
-        NSImage *thumbnailImage = [[NSImage alloc] initWithContentsOfURL:imageUrl];
-        [notification setValue:thumbnailImage forKey:@"contentImage"];
-    }
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center

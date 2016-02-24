@@ -16,7 +16,6 @@
 @property JBFMovieListingViewController *movieSearchListingViewController;
 @property (weak) IBOutlet NSSearchField *movieSearchField;
 @property (weak) IBOutlet NSSegmentedControl *sortField;
-@property (weak) IBOutlet NSSegmentedControl *filterField;
 @property (weak) IBOutlet NSSplitView *splitView;
 @property (weak) IBOutlet NSOutlineView *genreSidebarView;
 @property (weak) IBOutlet NSOutlineView *downloadSidebarView;
@@ -46,7 +45,7 @@
     self.movieSearchListingViewController.view.frame = [self.window.contentView bounds];
     self.movieSearchListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;
     [self.splitView replaceSubview:[self.splitView subviews][1] with:self.movieSearchListingViewController.view];
-    //[self.splitView adjustSubviews];
+    [self.splitView adjustSubviews];
     [self.splitView setDelegate:self];
     [self loadGenres];
     self.downloadStatus = [NSArray arrayWithObjects:@"Yes",@"No", nil];
@@ -60,8 +59,6 @@
     
     [self.sortField setSelectedSegment:0];
     
-    [self.filterField setSelectedSegment:0];
-    
     //load core data movies into array
     [self loadMovies];
     
@@ -69,6 +66,8 @@
     [self.genreSidebarView setAllowsMultipleSelection:YES];
     [self.downloadSidebarView expandItem:nil expandChildren:YES];
     [self.downloadSidebarView setAllowsMultipleSelection:NO];
+    
+    [self.window center];
 }
 
 -(void)loadGenres {
@@ -88,12 +87,18 @@
     //load movies from core data into array
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
     
+    //determine selected downloads
+    NSIndexSet *selectedDownloadIndexes = [self.downloadSidebarView selectedRowIndexes];
+    
+    //determine selected genres
+    NSIndexSet *selectedGenreIndexes = [self.downloadSidebarView selectedRowIndexes];
+    
     NSString *searchText = [self.movieSearchField.stringValue stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    if(([searchText length] > 2) && (self.filterField.selectedSegment==1)){ //search query plus filter downloaded==NO
+    if(([searchText length] > 2) && ([selectedDownloadIndexes containsIndex:2])){ //search query plus filter downloaded==NO
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@ OR synopsis CONTAINS[cd] %@ OR actors CONTAINS[cd] %@) AND downloaded == 0 OR downloaded==nil", searchText,searchText,searchText];
         [fetchRequest setPredicate:predicate];
     }
-    else if(([searchText length] > 2) && (self.filterField.selectedSegment==2)){ //search query plus filter downloaded==YES
+    else if(([searchText length] > 2) && ([selectedDownloadIndexes containsIndex:1])){ //search query plus filter downloaded==YES
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@ OR synopsis CONTAINS[cd] %@ OR actors CONTAINS[cd] %@) AND downloaded == 1", searchText,searchText,searchText];
         [fetchRequest setPredicate:predicate];
     }
@@ -101,11 +106,11 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@ OR synopsis CONTAINS[cd] %@ OR actors CONTAINS[cd] %@", searchText,searchText,searchText];
         [fetchRequest setPredicate:predicate];
     }
-    else if(self.filterField.selectedSegment==1){
+    else if([selectedDownloadIndexes containsIndex:2]){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloaded == 0 OR downloaded==nil"];
         [fetchRequest setPredicate:predicate];
     }
-    else if(self.filterField.selectedSegment==2){
+    else if([selectedDownloadIndexes containsIndex:1]){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloaded == 1"];
         [fetchRequest setPredicate:predicate];
     }
@@ -208,6 +213,11 @@
         return YES;
 }
 
+- (BOOL)outlineView:(NSOutlineView *)outlineView
+ shouldCollapseItem:(id)item {
+    return NO;
+}
+
 - (void)outlineView:(NSOutlineView *)outlineView
     willDisplayCell:(id)cell
      forTableColumn:(NSTableColumn *)tableColumn
@@ -216,7 +226,7 @@
 }
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
-    
+    [self loadMovies];
 }
 
 - (NSRect)splitView:(NSSplitView *)splitView
