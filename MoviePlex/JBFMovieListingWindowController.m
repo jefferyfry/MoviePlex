@@ -22,8 +22,6 @@
 @property NSArray *genres;
 @property NSArray *downloadStatus;
 
--(void)loadMovies;
-
 @end
 
 @implementation JBFMovieListingWindowController

@@ -12,6 +12,6 @@
 
 @interface JBFMovieListingWindowController : NSWindowController <JBFMovieSyncerDelegate>
 
-
+-(void)loadMovies;
 
 @end

@@ -47,6 +47,7 @@
 {
     JBFMovie *movie = [self.movies objectAtIndex:row];
     JBFMovieTableCellView *result = [tableView makeViewWithIdentifier:@"movieCell" owner:self];
+    
     if(movie.title!=nil)
         result.titleTextField.stringValue = movie.title;
     else

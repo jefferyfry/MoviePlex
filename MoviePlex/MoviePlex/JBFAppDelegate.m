@@ -35,26 +35,24 @@
     //add status bar menu
     self.statusMenu = [[NSMenu alloc] init];
     
-    //add option for reset DB
-    [self.statusMenu addItemWithTitle:@"Reset Movie DB" action:@selector(resetMovieDb) keyEquivalent:@""];
-    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
-    
-    //add option for sync now
-//    [self.statusMenu addItemWithTitle:@"Sync Now" action:@selector(syncMovies) keyEquivalent:@""];
-//    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-//    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
-    
-    //add option for exiting
-    [self.statusMenu addItemWithTitle:@"Exit" action:@selector(exit:) keyEquivalent:@""];
-    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
-    
     //load the status bar icon for this app
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [self.statusItem setHighlightMode:YES]; //highlight the item whem clicked
+    [self.statusItem setAction:@selector(showMainWindowAndStatusMenuOptions:)];
     NSString *statusIcon = [[NSBundle mainBundle] pathForResource:@"movieplex22x22" ofType:@"png"];
     [self.statusItem setImage:[[NSImage alloc] initWithContentsOfFile:statusIcon]];
-    //when clicked it will show the main window and the exit option
-    [self.statusItem setAction:@selector(showMainWindowAndExitOption:)];
+    
+    //add option for reset DB
+    [self.statusMenu addItemWithTitle:@"Reset Movie DB" action:@selector(resetMovieDb) keyEquivalent:@""];
+    
+    //add option for marking all as downloaded
+    [self.statusMenu addItemWithTitle:@"Mark All Downloaded" action:@selector(markAllDownloaded) keyEquivalent:@""];
+    
+    //add option for marking all as not downloaded
+    [self.statusMenu addItemWithTitle:@"Mark All Not Downloaded" action:@selector(markAllNotDownloaded) keyEquivalent:@""];
+
+    //add option for exiting
+    [self.statusMenu addItemWithTitle:@"Exit" action:@selector(exit:) keyEquivalent:@""];
     
     //sync on app launch
     [self syncMovies];
@@ -65,8 +63,8 @@
                                                          userInfo:nil repeats:YES];
 }
 
-- (void)showMainWindowAndExitOption:(id)sender {
-    [self.statusItem popUpStatusItemMenu:self.statusMenu]; //show exit
+- (void)showMainWindowAndStatusMenuOptions:(id)sender {
+    [self.statusItem popUpStatusItemMenu:self.statusMenu]; //show menu options
     [self.movieWindowController showWindow:self]; //show main window
     [NSApp activateIgnoringOtherApps:YES]; //bring main window to front
 }
@@ -84,6 +82,33 @@
     [alert setAlertStyle:NSWarningAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
         [self.movieSyncer resetMoviesDb];
+    }
+}
+
+-(void)markAllDownloaded {
+    [self markAllWithDownloadStatus:YES];
+}
+
+-(void)markAllNotDownloaded {
+    [self markAllWithDownloadStatus:NO];
+}
+
+-(void)markAllWithDownloadStatus:(BOOL)downloaded {
+    NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
+    
+    //now query core data to see if movies already exist
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Movie"];
+    
+    NSError *error = nil;
+    NSArray *array = [childManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (array != nil || [array count] > 0) {
+        for(JBFMovie *movie in array)
+            movie.downloaded = downloaded;
+        
+        if (![childManagedObjectContext save:&error])
+            NSLog(@"Error saving movie download status in child MOC: %@", error);
+        
+        [self.movieWindowController loadMovies];
     }
 }
 
