@@ -34,20 +34,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="204" height="349"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMe-es-Ib4">
-                                        <rect key="frame" x="0.0" y="99" width="150" height="250"/>
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="IMe-es-Ib4">
+                                        <rect key="frame" x="0.0" y="99" width="175" height="250"/>
                                         <clipView key="contentView" autoresizesSubviews="NO" id="xIG-6c-cqE">
-                                            <rect key="frame" x="1" y="1" width="148" height="248"/>
+                                            <rect key="frame" x="1" y="1" width="173" height="248"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" indentationPerLevel="16" outlineTableColumn="m6p-fd-zrf" id="9RE-WT-RJo">
-                                                    <rect key="frame" x="0.0" y="0.0" width="148" height="25"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="173" height="248"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn width="145" minWidth="16" maxWidth="1000" id="m6p-fd-zrf">
+                                                        <tableColumn width="170" minWidth="16" maxWidth="1000" id="m6p-fd-zrf">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -66,7 +66,7 @@
                                             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </clipView>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="4W7-pD-pzW"/>
+                                            <constraint firstAttribute="width" constant="175" id="4W7-pD-pzW"/>
                                             <constraint firstAttribute="height" constant="250" id="hMq-g6-P94"/>
                                         </constraints>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="G8u-S0-C2a">
@@ -78,14 +78,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STm-gy-T8M">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="STm-gy-T8M">
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="100"/>
                                         <clipView key="contentView" id="0pI-9U-coc">
-                                            <rect key="frame" x="1" y="1" width="148" height="98"/>
+                                            <rect key="frame" x="1" y="1" width="173" height="98"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" indentationPerLevel="16" outlineTableColumn="WaV-gA-7Ja" id="gLs-7P-OP7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="19"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="173" height="98"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -110,7 +110,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="8bL-3s-sk9"/>
+                                            <constraint firstAttribute="width" constant="175" id="8bL-3s-sk9"/>
                                             <constraint firstAttribute="height" constant="100" id="hAk-GU-jUY"/>
                                         </constraints>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="O9l-jm-gts">
