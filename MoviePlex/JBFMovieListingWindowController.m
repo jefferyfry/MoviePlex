@@ -138,10 +138,6 @@
     [self loadMovies];
 }
 
-- (IBAction)fireMovieFilter:(id)sender {
-    [self loadMovies];
-}
-
 -(void)moviesUpdated {
     [self loadMovies];
 }
