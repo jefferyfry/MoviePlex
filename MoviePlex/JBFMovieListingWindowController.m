@@ -11,14 +11,15 @@
 #import "JBFGenre.h"
 @import CoreData;
 
-@interface JBFMovieListingWindowController () <NSSplitViewDelegate,NSOutlineViewDataSource>
+@interface JBFMovieListingWindowController () <NSSplitViewDelegate,NSOutlineViewDataSource,NSOutlineViewDelegate>
 
 @property JBFMovieListingViewController *movieSearchListingViewController;
 @property (weak) IBOutlet NSSearchField *movieSearchField;
 @property (weak) IBOutlet NSSegmentedControl *sortField;
 @property (weak) IBOutlet NSSegmentedControl *filterField;
 @property (weak) IBOutlet NSSplitView *splitView;
-@property (weak) IBOutlet NSOutlineView *sidebarView;
+@property (weak) IBOutlet NSOutlineView *genreSidebarView;
+@property (weak) IBOutlet NSOutlineView *downloadSidebarView;
 @property NSArray *genres;
 @property NSArray *downloadStatus;
 
@@ -40,7 +41,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [self.window setTitle:@"MoviePlex 0.4"];
+    [self.window setTitle:@"MoviePlex 0.5"];
     self.movieSearchListingViewController = [JBFMovieListingViewController new];
     self.movieSearchListingViewController.view.frame = [self.window.contentView bounds];
     self.movieSearchListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;
@@ -51,8 +52,10 @@
     self.downloadStatus = [NSArray arrayWithObjects:@"Yes",@"No", nil];
    
     
-    [self.sidebarView setDataSource:self];
-    [self.sidebarView reloadData];
+    [self.genreSidebarView setDataSource:self];
+    [self.genreSidebarView setDelegate:self];
+    [self.downloadSidebarView setDataSource:self];
+    [self.downloadSidebarView setDelegate:self];
     
     
     [self.sortField setSelectedSegment:0];
@@ -61,6 +64,11 @@
     
     //load core data movies into array
     [self loadMovies];
+    
+    [self.genreSidebarView expandItem:nil expandChildren:YES];
+    [self.genreSidebarView setAllowsMultipleSelection:YES];
+    [self.downloadSidebarView expandItem:nil expandChildren:YES];
+    [self.downloadSidebarView setAllowsMultipleSelection:NO];
 }
 
 -(void)loadGenres {
@@ -142,15 +150,18 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-    if(item==nil&&index==0)
-        return @"Genres";
-    else if(item==nil)
-        return @"Downloaded";
-    else if([item isEqualToString:@"Downloaded"])
-        return self.downloadStatus[index];
-    else
-        return self.genres[index];
-        
+    if(outlineView == self.genreSidebarView){
+        if(item==nil&&index==0)
+            return @"Genres";
+        else
+            return self.genres[index];
+    }
+    else {
+        if(item==nil&&index==0)
+            return @"Downloaded";
+        else
+            return self.downloadStatus[index];
+    }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
@@ -170,15 +181,11 @@
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if(item==nil)
-        return 2;
-    else if([item isKindOfClass:[NSString class]]){
-        if([item isEqualToString:@"Downloaded"])
-            return [self.downloadStatus count];
-        else
-            return [self.genres count];
-    }
+        return 1;
+    else if(outlineView == self.genreSidebarView)
+        return [self.genres count];
     else
-        return 0;
+        return [self.downloadStatus count];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
@@ -191,6 +198,25 @@
         JBFGenre *genre = (JBFGenre*)item;
         return [NSString stringWithFormat:@"%@ (%@)",genre.name,genre.count];
     }
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView
+   shouldSelectItem:(id)item {
+    if([item isKindOfClass:[NSString class]]&&([item isEqualToString:@"Downloaded"]||[item isEqualToString:@"Genres"]))
+        return NO;
+    else
+        return YES;
+}
+
+- (void)outlineView:(NSOutlineView *)outlineView
+    willDisplayCell:(id)cell
+     forTableColumn:(NSTableColumn *)tableColumn
+               item:(id)item {
+
+}
+
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+    
 }
 
 - (NSRect)splitView:(NSSplitView *)splitView

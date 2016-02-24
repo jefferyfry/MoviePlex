@@ -88,7 +88,7 @@
         result.releaseDateTextField.stringValue = @" ";
     
     if(movie.rating!=nil)
-        result.ratingTextField.stringValue = movie.rating;
+        result.ratingTextField.stringValue = [movie.rating stringByAppendingString:@"/100"];
     else
         result.ratingTextField.stringValue = @" ";
     

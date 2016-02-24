@@ -13,7 +13,7 @@
 #import "JBFGenre.h"
 
 //NSString *const MovieListingUrl = @"http://brentium.sea.i.extrahop.com/movies/";
-NSString *const MovieListingUrl = @"https://brentium.sea.i.extrahop.com/movies/";
+NSString *const MovieListingUrl = @"https://brentium.sea.i.extrahop.com/movies/Movies";
 NSString *const XpathRows = @"//tbody/tr";
 NSString *const XpathLink = @"td[1]/a/@href";
 NSString *const XpathUploadDate = @"td[@class='m']";
@@ -147,7 +147,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     if([result[@"Metascore"] isEqualToString:@"N/A"])
         newMovie.rating = @" ";
     else
-        newMovie.rating = [result[@"Metascore"] stringByAppendingString:@"/100"];
+        newMovie.rating = result[@"Metascore"];
     newMovie.actors = result[@"Actors"];
     newMovie.downloaded = NO;
     
