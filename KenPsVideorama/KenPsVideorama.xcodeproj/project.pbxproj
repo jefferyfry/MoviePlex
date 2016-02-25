@@ -1,0 +1,637 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		123AA1B319A523FF00A16101 /* blank_poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 123AA1B219A523FF00A16101 /* blank_poster.jpg */; };
+		123F3DC719A26D8600441B9C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 123F3DC619A26D8600441B9C /* Cocoa.framework */; };
+		123F3DD119A26D8600441B9C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 123F3DCF19A26D8600441B9C /* InfoPlist.strings */; };
+		123F3DD319A26D8600441B9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3DD219A26D8600441B9C /* main.m */; };
+		123F3DD719A26D8600441B9C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 123F3DD519A26D8600441B9C /* Credits.rtf */; };
+		123F3DDA19A26D8600441B9C /* JBFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3DD919A26D8600441B9C /* JBFAppDelegate.m */; };
+		123F3DDD19A26D8600441B9C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123F3DDB19A26D8600441B9C /* MainMenu.xib */; };
+		123F3DE619A26D8600441B9C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 123F3DE519A26D8600441B9C /* XCTest.framework */; };
+		123F3DE719A26D8600441B9C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 123F3DC619A26D8600441B9C /* Cocoa.framework */; };
+		123F3DEF19A26D8600441B9C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 123F3DED19A26D8600441B9C /* InfoPlist.strings */; };
+		123F3DF119A26D8600441B9C /* KenPsVideoramaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3DF019A26D8600441B9C /* KenPsVideoramaTests.m */; };
+		123F3DFD19A277E000441B9C /* JBFVideoListingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3DFB19A277E000441B9C /* JBFVideoListingWindowController.m */; };
+		123F3DFE19A277E000441B9C /* JBFVideoListingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123F3DFC19A277E000441B9C /* JBFVideoListingWindowController.xib */; };
+		123F3E0719A2786300441B9C /* JBFVideoListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E0519A2786300441B9C /* JBFVideoListingViewController.m */; };
+		123F3E0819A2786300441B9C /* JBFVideoListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123F3E0619A2786300441B9C /* JBFVideoListingViewController.xib */; };
+		123F3E1019A27B6100441B9C /* JBFVideoSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E0F19A27B6100441B9C /* JBFVideoSearch.m */; };
+		123F3E1319A27B7A00441B9C /* JBFVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E1219A27B7A00441B9C /* JBFVideo.m */; };
+		123F3E2019A40EB500441B9C /* JBFVideoTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F3E1F19A40EB500441B9C /* JBFVideoTableCellView.m */; };
+		12489B801C7ECE540030FEEC /* videorama22x22.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B771C7ECE540030FEEC /* videorama22x22.png */; };
+		12489B811C7ECE540030FEEC /* videorama1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B781C7ECE540030FEEC /* videorama1024x1024.png */; };
+		12489B821C7ECE540030FEEC /* videorama64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B791C7ECE540030FEEC /* videorama64x64.png */; };
+		12489B831C7ECE540030FEEC /* videorama512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B7A1C7ECE540030FEEC /* videorama512x512.png */; };
+		12489B841C7ECE540030FEEC /* videorama256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B7B1C7ECE540030FEEC /* videorama256x256.png */; };
+		12489B851C7ECE540030FEEC /* videorama128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B7C1C7ECE540030FEEC /* videorama128x128.png */; };
+		12489B861C7ECE540030FEEC /* videorama32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B7D1C7ECE540030FEEC /* videorama32x32.png */; };
+		12489B871C7ECE540030FEEC /* videorama16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B7E1C7ECE540030FEEC /* videorama16x16.png */; };
+		12489B881C7ECE540030FEEC /* videorama.png in Resources */ = {isa = PBXBuildFile; fileRef = 12489B7F1C7ECE540030FEEC /* videorama.png */; };
+		12D46BCD1C67ED1B00C8B4F7 /* Videorama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12D46BCB1C67ED1B00C8B4F7 /* Videorama.xcdatamodeld */; };
+		12D46BD01C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D46BCE1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m */; };
+		12D68BDB1C7AA90A000E558D /* JBFGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D68BDA1C7AA90A000E558D /* JBFGenre.m */; };
+		8118402C1C6911DE001A2C81 /* JBFVideosSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402B1C6911DE001A2C81 /* JBFVideosSyncer.m */; };
+		8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */; };
+		812976A61C6A5DC8007C968C /* NSString+NSStringAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 812976A51C6A5DC8007C968C /* NSString+NSStringAddition.m */; };
+		81BCAFE91C6AB0EB00D1A811 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81BCAFE81C6AB0EB00D1A811 /* Media.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		123F3DE819A26D8600441B9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 123F3DBB19A26D8600441B9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 123F3DC219A26D8600441B9C;
+			remoteInfo = HW6_Jfry;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		123AA1B219A523FF00A16101 /* blank_poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blank_poster.jpg; sourceTree = SOURCE_ROOT; };
+		123F3DC319A26D8600441B9C /* KenPsVideorama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KenPsVideorama.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		123F3DC619A26D8600441B9C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		123F3DC919A26D8600441B9C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		123F3DCA19A26D8600441B9C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		123F3DCB19A26D8600441B9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		123F3DCE19A26D8600441B9C /* MoviePlex-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoviePlex-Info.plist"; sourceTree = "<group>"; };
+		123F3DD019A26D8600441B9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		123F3DD219A26D8600441B9C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		123F3DD419A26D8600441B9C /* MoviePlex-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoviePlex-Prefix.pch"; sourceTree = "<group>"; };
+		123F3DD619A26D8600441B9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		123F3DD819A26D8600441B9C /* JBFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBFAppDelegate.h; sourceTree = "<group>"; };
+		123F3DD919A26D8600441B9C /* JBFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBFAppDelegate.m; sourceTree = "<group>"; };
+		123F3DDC19A26D8600441B9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		123F3DE419A26D8600441B9C /* KenPsVideorama.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KenPsVideorama.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		123F3DE519A26D8600441B9C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		123F3DEC19A26D8600441B9C /* MoviePlexTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoviePlexTests-Info.plist"; sourceTree = "<group>"; };
+		123F3DEE19A26D8600441B9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		123F3DF019A26D8600441B9C /* KenPsVideoramaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KenPsVideoramaTests.m; sourceTree = "<group>"; };
+		123F3DFA19A277E000441B9C /* JBFVideoListingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBFVideoListingWindowController.h; path = ../JBFVideoListingWindowController.h; sourceTree = "<group>"; };
+		123F3DFB19A277E000441B9C /* JBFVideoListingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBFVideoListingWindowController.m; path = ../JBFVideoListingWindowController.m; sourceTree = "<group>"; };
+		123F3DFC19A277E000441B9C /* JBFVideoListingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JBFVideoListingWindowController.xib; path = ../JBFVideoListingWindowController.xib; sourceTree = "<group>"; };
+		123F3E0419A2786300441B9C /* JBFVideoListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFVideoListingViewController.h; sourceTree = "<group>"; };
+		123F3E0519A2786300441B9C /* JBFVideoListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFVideoListingViewController.m; sourceTree = "<group>"; };
+		123F3E0619A2786300441B9C /* JBFVideoListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBFVideoListingViewController.xib; sourceTree = "<group>"; };
+		123F3E0E19A27B6100441B9C /* JBFVideoSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFVideoSearch.h; sourceTree = "<group>"; };
+		123F3E0F19A27B6100441B9C /* JBFVideoSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFVideoSearch.m; sourceTree = "<group>"; };
+		123F3E1119A27B7A00441B9C /* JBFVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFVideo.h; sourceTree = "<group>"; };
+		123F3E1219A27B7A00441B9C /* JBFVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFVideo.m; sourceTree = "<group>"; };
+		123F3E1E19A40EB500441B9C /* JBFVideoTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFVideoTableCellView.h; sourceTree = "<group>"; };
+		123F3E1F19A40EB500441B9C /* JBFVideoTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFVideoTableCellView.m; sourceTree = "<group>"; };
+		12489B771C7ECE540030FEEC /* videorama22x22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama22x22.png; sourceTree = "<group>"; };
+		12489B781C7ECE540030FEEC /* videorama1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama1024x1024.png; sourceTree = "<group>"; };
+		12489B791C7ECE540030FEEC /* videorama64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama64x64.png; sourceTree = "<group>"; };
+		12489B7A1C7ECE540030FEEC /* videorama512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama512x512.png; sourceTree = "<group>"; };
+		12489B7B1C7ECE540030FEEC /* videorama256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama256x256.png; sourceTree = "<group>"; };
+		12489B7C1C7ECE540030FEEC /* videorama128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama128x128.png; sourceTree = "<group>"; };
+		12489B7D1C7ECE540030FEEC /* videorama32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama32x32.png; sourceTree = "<group>"; };
+		12489B7E1C7ECE540030FEEC /* videorama16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama16x16.png; sourceTree = "<group>"; };
+		12489B7F1C7ECE540030FEEC /* videorama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videorama.png; sourceTree = "<group>"; };
+		12D46BCC1C67ED1B00C8B4F7 /* Videorama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Videorama.xcdatamodel; sourceTree = "<group>"; };
+		12D46BCE1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+NSURLRequestAddition.m"; sourceTree = "<group>"; };
+		12D46BCF1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+NSURLRequestAddition.h"; sourceTree = "<group>"; };
+		12D68BD91C7AA90A000E558D /* JBFGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFGenre.h; sourceTree = "<group>"; };
+		12D68BDA1C7AA90A000E558D /* JBFGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFGenre.m; sourceTree = "<group>"; };
+		8118402A1C6911DE001A2C81 /* JBFVideosSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFVideosSyncer.h; sourceTree = "<group>"; };
+		8118402B1C6911DE001A2C81 /* JBFVideosSyncer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFVideosSyncer.m; sourceTree = "<group>"; };
+		8118402D1C6925F9001A2C81 /* JBFCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFCoreDataStack.h; sourceTree = "<group>"; };
+		8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBFCoreDataStack.m; sourceTree = "<group>"; };
+		812976A41C6A5DC8007C968C /* NSString+NSStringAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringAddition.h"; sourceTree = "<group>"; };
+		812976A51C6A5DC8007C968C /* NSString+NSStringAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringAddition.m"; sourceTree = "<group>"; };
+		81BCAFE81C6AB0EB00D1A811 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		123F3DC019A26D8600441B9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123F3DC719A26D8600441B9C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		123F3DE119A26D8600441B9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123F3DE719A26D8600441B9C /* Cocoa.framework in Frameworks */,
+				123F3DE619A26D8600441B9C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		123F3DBA19A26D8600441B9C = {
+			isa = PBXGroup;
+			children = (
+				123F3DCC19A26D8600441B9C /* KenPsVideorama */,
+				123F3DEA19A26D8600441B9C /* KenPsVideoramaTests */,
+				123F3DC519A26D8600441B9C /* Frameworks */,
+				123F3DC419A26D8600441B9C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		123F3DC419A26D8600441B9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DC319A26D8600441B9C /* KenPsVideorama.app */,
+				123F3DE419A26D8600441B9C /* KenPsVideorama.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		123F3DC519A26D8600441B9C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DC619A26D8600441B9C /* Cocoa.framework */,
+				123F3DE519A26D8600441B9C /* XCTest.framework */,
+				123F3DC819A26D8600441B9C /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		123F3DC819A26D8600441B9C /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DC919A26D8600441B9C /* AppKit.framework */,
+				123F3DCA19A26D8600441B9C /* CoreData.framework */,
+				123F3DCB19A26D8600441B9C /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		123F3DCC19A26D8600441B9C /* KenPsVideorama */ = {
+			isa = PBXGroup;
+			children = (
+				12489B761C7ECE400030FEEC /* images */,
+				81BCAFE81C6AB0EB00D1A811 /* Media.xcassets */,
+				12D46BCE1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m */,
+				12D46BCF1C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.h */,
+				123AA1B219A523FF00A16101 /* blank_poster.jpg */,
+				123F3DD819A26D8600441B9C /* JBFAppDelegate.h */,
+				123F3DD919A26D8600441B9C /* JBFAppDelegate.m */,
+				123F3DDB19A26D8600441B9C /* MainMenu.xib */,
+				123F3E0A19A2789B00441B9C /* WindowControllers */,
+				123F3E0919A2789000441B9C /* ViewControllers */,
+				123F3DCD19A26D8600441B9C /* Supporting Files */,
+				123F3E0E19A27B6100441B9C /* JBFVideoSearch.h */,
+				123F3E0F19A27B6100441B9C /* JBFVideoSearch.m */,
+				123F3E1119A27B7A00441B9C /* JBFVideo.h */,
+				123F3E1219A27B7A00441B9C /* JBFVideo.m */,
+				12D68BD91C7AA90A000E558D /* JBFGenre.h */,
+				12D68BDA1C7AA90A000E558D /* JBFGenre.m */,
+				12D46BCB1C67ED1B00C8B4F7 /* Videorama.xcdatamodeld */,
+				8118402A1C6911DE001A2C81 /* JBFVideosSyncer.h */,
+				8118402B1C6911DE001A2C81 /* JBFVideosSyncer.m */,
+				8118402D1C6925F9001A2C81 /* JBFCoreDataStack.h */,
+				8118402E1C6925F9001A2C81 /* JBFCoreDataStack.m */,
+				812976A41C6A5DC8007C968C /* NSString+NSStringAddition.h */,
+				812976A51C6A5DC8007C968C /* NSString+NSStringAddition.m */,
+			);
+			path = KenPsVideorama;
+			sourceTree = "<group>";
+		};
+		123F3DCD19A26D8600441B9C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DCE19A26D8600441B9C /* MoviePlex-Info.plist */,
+				123F3DCF19A26D8600441B9C /* InfoPlist.strings */,
+				123F3DD219A26D8600441B9C /* main.m */,
+				123F3DD419A26D8600441B9C /* MoviePlex-Prefix.pch */,
+				123F3DD519A26D8600441B9C /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		123F3DEA19A26D8600441B9C /* KenPsVideoramaTests */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DF019A26D8600441B9C /* KenPsVideoramaTests.m */,
+				123F3DEB19A26D8600441B9C /* Supporting Files */,
+			);
+			name = KenPsVideoramaTests;
+			path = MoviePlexTests;
+			sourceTree = "<group>";
+		};
+		123F3DEB19A26D8600441B9C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DEC19A26D8600441B9C /* MoviePlexTests-Info.plist */,
+				123F3DED19A26D8600441B9C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		123F3E0919A2789000441B9C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				123F3E0419A2786300441B9C /* JBFVideoListingViewController.h */,
+				123F3E0519A2786300441B9C /* JBFVideoListingViewController.m */,
+				123F3E0619A2786300441B9C /* JBFVideoListingViewController.xib */,
+				123F3E1E19A40EB500441B9C /* JBFVideoTableCellView.h */,
+				123F3E1F19A40EB500441B9C /* JBFVideoTableCellView.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		123F3E0A19A2789B00441B9C /* WindowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				123F3DFA19A277E000441B9C /* JBFVideoListingWindowController.h */,
+				123F3DFB19A277E000441B9C /* JBFVideoListingWindowController.m */,
+				123F3DFC19A277E000441B9C /* JBFVideoListingWindowController.xib */,
+			);
+			name = WindowControllers;
+			sourceTree = "<group>";
+		};
+		12489B761C7ECE400030FEEC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				12489B771C7ECE540030FEEC /* videorama22x22.png */,
+				12489B781C7ECE540030FEEC /* videorama1024x1024.png */,
+				12489B791C7ECE540030FEEC /* videorama64x64.png */,
+				12489B7A1C7ECE540030FEEC /* videorama512x512.png */,
+				12489B7B1C7ECE540030FEEC /* videorama256x256.png */,
+				12489B7C1C7ECE540030FEEC /* videorama128x128.png */,
+				12489B7D1C7ECE540030FEEC /* videorama32x32.png */,
+				12489B7E1C7ECE540030FEEC /* videorama16x16.png */,
+				12489B7F1C7ECE540030FEEC /* videorama.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		123F3DC219A26D8600441B9C /* KenPsVideorama */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 123F3DF419A26D8600441B9C /* Build configuration list for PBXNativeTarget "KenPsVideorama" */;
+			buildPhases = (
+				123F3DBF19A26D8600441B9C /* Sources */,
+				123F3DC019A26D8600441B9C /* Frameworks */,
+				123F3DC119A26D8600441B9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KenPsVideorama;
+			productName = HW6_Jfry;
+			productReference = 123F3DC319A26D8600441B9C /* KenPsVideorama.app */;
+			productType = "com.apple.product-type.application";
+		};
+		123F3DE319A26D8600441B9C /* KenPsVideoramaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 123F3DF719A26D8600441B9C /* Build configuration list for PBXNativeTarget "KenPsVideoramaTests" */;
+			buildPhases = (
+				123F3DE019A26D8600441B9C /* Sources */,
+				123F3DE119A26D8600441B9C /* Frameworks */,
+				123F3DE219A26D8600441B9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				123F3DE919A26D8600441B9C /* PBXTargetDependency */,
+			);
+			name = KenPsVideoramaTests;
+			productName = HW6_JfryTests;
+			productReference = 123F3DE419A26D8600441B9C /* KenPsVideorama.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		123F3DBB19A26D8600441B9C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JBF;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Jeff_Fry;
+				TargetAttributes = {
+					123F3DE319A26D8600441B9C = {
+						TestTargetID = 123F3DC219A26D8600441B9C;
+					};
+				};
+			};
+			buildConfigurationList = 123F3DBE19A26D8600441B9C /* Build configuration list for PBXProject "KenPsVideorama" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 123F3DBA19A26D8600441B9C;
+			productRefGroup = 123F3DC419A26D8600441B9C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				123F3DC219A26D8600441B9C /* KenPsVideorama */,
+				123F3DE319A26D8600441B9C /* KenPsVideoramaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		123F3DC119A26D8600441B9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123F3DD119A26D8600441B9C /* InfoPlist.strings in Resources */,
+				81BCAFE91C6AB0EB00D1A811 /* Media.xcassets in Resources */,
+				123F3E0819A2786300441B9C /* JBFVideoListingViewController.xib in Resources */,
+				12489B821C7ECE540030FEEC /* videorama64x64.png in Resources */,
+				123AA1B319A523FF00A16101 /* blank_poster.jpg in Resources */,
+				12489B871C7ECE540030FEEC /* videorama16x16.png in Resources */,
+				123F3DD719A26D8600441B9C /* Credits.rtf in Resources */,
+				12489B801C7ECE540030FEEC /* videorama22x22.png in Resources */,
+				12489B881C7ECE540030FEEC /* videorama.png in Resources */,
+				123F3DFE19A277E000441B9C /* JBFVideoListingWindowController.xib in Resources */,
+				12489B831C7ECE540030FEEC /* videorama512x512.png in Resources */,
+				12489B861C7ECE540030FEEC /* videorama32x32.png in Resources */,
+				12489B841C7ECE540030FEEC /* videorama256x256.png in Resources */,
+				123F3DDD19A26D8600441B9C /* MainMenu.xib in Resources */,
+				12489B811C7ECE540030FEEC /* videorama1024x1024.png in Resources */,
+				12489B851C7ECE540030FEEC /* videorama128x128.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		123F3DE219A26D8600441B9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123F3DEF19A26D8600441B9C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		123F3DBF19A26D8600441B9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D68BDB1C7AA90A000E558D /* JBFGenre.m in Sources */,
+				123F3DFD19A277E000441B9C /* JBFVideoListingWindowController.m in Sources */,
+				812976A61C6A5DC8007C968C /* NSString+NSStringAddition.m in Sources */,
+				12D46BCD1C67ED1B00C8B4F7 /* Videorama.xcdatamodeld in Sources */,
+				123F3E2019A40EB500441B9C /* JBFVideoTableCellView.m in Sources */,
+				123F3E1319A27B7A00441B9C /* JBFVideo.m in Sources */,
+				8118402C1C6911DE001A2C81 /* JBFVideosSyncer.m in Sources */,
+				123F3E0719A2786300441B9C /* JBFVideoListingViewController.m in Sources */,
+				8118402F1C6925F9001A2C81 /* JBFCoreDataStack.m in Sources */,
+				123F3E1019A27B6100441B9C /* JBFVideoSearch.m in Sources */,
+				123F3DD319A26D8600441B9C /* main.m in Sources */,
+				123F3DDA19A26D8600441B9C /* JBFAppDelegate.m in Sources */,
+				12D46BD01C69B10200C8B4F7 /* NSURLRequest+NSURLRequestAddition.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		123F3DE019A26D8600441B9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				123F3DF119A26D8600441B9C /* KenPsVideoramaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		123F3DE919A26D8600441B9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 123F3DC219A26D8600441B9C /* KenPsVideorama */;
+			targetProxy = 123F3DE819A26D8600441B9C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		123F3DCF19A26D8600441B9C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				123F3DD019A26D8600441B9C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		123F3DD519A26D8600441B9C /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				123F3DD619A26D8600441B9C /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		123F3DDB19A26D8600441B9C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				123F3DDC19A26D8600441B9C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		123F3DED19A26D8600441B9C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				123F3DEE19A26D8600441B9C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		123F3DF219A26D8600441B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		123F3DF319A26D8600441B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		123F3DF519A26D8600441B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KenPsVideorama/KenPsVideorama-Prefix.pch";
+				INFOPLIST_FILE = "KenPsVideorama/KenPsVideorama-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "JBF.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = KenPsVideorama;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		123F3DF619A26D8600441B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KenPsVideorama/KenPsVideorama-Prefix.pch";
+				INFOPLIST_FILE = "KenPsVideorama/KenPsVideorama-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "JBF.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = KenPsVideorama;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		123F3DF819A26D8600441B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KenPsVideorama.app/Contents/MacOS/KenPsVideorama";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = KenPsVideorama/KenPsVideorama.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "KenPsVideoramaTests/KenPsVideoramaTests-Info.plist";
+				PRODUCT_NAME = KenPsVideorama;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		123F3DF919A26D8600441B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KenPsVideorama.app/Contents/MacOS/KenPsVideorama";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = KenPsVideorama/KenPsVideorama.pch;
+				INFOPLIST_FILE = "KenPsVideoramaTests/KenPsVideoramaTests-Info.plist";
+				PRODUCT_NAME = KenPsVideorama;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		123F3DBE19A26D8600441B9C /* Build configuration list for PBXProject "KenPsVideorama" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				123F3DF219A26D8600441B9C /* Debug */,
+				123F3DF319A26D8600441B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		123F3DF419A26D8600441B9C /* Build configuration list for PBXNativeTarget "KenPsVideorama" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				123F3DF519A26D8600441B9C /* Debug */,
+				123F3DF619A26D8600441B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		123F3DF719A26D8600441B9C /* Build configuration list for PBXNativeTarget "KenPsVideoramaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				123F3DF819A26D8600441B9C /* Debug */,
+				123F3DF919A26D8600441B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		12D46BCB1C67ED1B00C8B4F7 /* Videorama.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				12D46BCC1C67ED1B00C8B4F7 /* Videorama.xcdatamodel */,
+			);
+			currentVersion = 12D46BCC1C67ED1B00C8B4F7 /* Videorama.xcdatamodel */;
+			path = Videorama.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 123F3DBB19A26D8600441B9C /* Project object */;
+}
