@@ -8,13 +8,12 @@
             <connections>
                 <outlet property="downloadSidebarView" destination="gLs-7P-OP7" id="9Eq-Xw-siO"/>
                 <outlet property="genreSidebarView" destination="9RE-WT-RJo" id="aAV-yY-FDo"/>
-                <outlet property="movieSearchField" destination="vBe-34-avR" id="8w9-zx-F76"/>
                 <outlet property="numMoviesLabel" destination="RT5-mh-uuS" id="yf5-OX-BgM"/>
                 <outlet property="numOtherLabel" destination="XdR-4f-E7S" id="KXo-DQ-agB"/>
                 <outlet property="numTvLabel" destination="K11-JA-4Sv" id="tm7-8Q-CUl"/>
                 <outlet property="sortField" destination="GCa-Bv-UAw" id="vvf-XT-8c6"/>
                 <outlet property="splitView" destination="59j-gw-Yvu" id="iCr-nX-iHN"/>
-                <outlet property="videoSearchField" destination="vBe-34-avR" id="ugB-xO-xVu"/>
+                <outlet property="videoSearchField" destination="vBe-34-avR" id="Iie-Ta-tX7"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -168,10 +167,10 @@
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
+                            <connections>
+                                <action selector="fireVideoSearch:" target="-2" id="egY-TP-Nlg"/>
+                            </connections>
                         </searchField>
-                        <connections>
-                            <action selector="fireVideoSearch:" target="-2" id="bbV-rD-Dmz"/>
-                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="aAL-lp-pYe"/>
                     <toolbarItem implicitItemIdentifier="492C604D-460B-416C-9F28-FA111D0BB965" label="Sort" paletteLabel="Sort" id="ete-Qk-HVE">
@@ -191,12 +190,9 @@
                                 </segments>
                             </segmentedCell>
                             <connections>
-                                <action selector="fireMovieSort:" target="-2" id="oHY-3h-MCG"/>
+                                <action selector="fireVideoSort:" target="-2" id="YbK-Ol-riL"/>
                             </connections>
                         </segmentedControl>
-                        <connections>
-                            <action selector="fireVideoSort:" target="-2" id="cLt-Pq-g23"/>
-                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="489A06D8-210E-4CE1-9D0D-D7CF54BE9277" label="Movies" paletteLabel="Movies" id="EbY-ww-wrS">
                         <nil key="toolTip"/>

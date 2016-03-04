@@ -6,7 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="JBFVideoListingViewController">
             <connections>
-                <outlet property="movieSearchResultsTableView" destination="SF0-5A-BpF" id="lRM-r9-boR"/>
+                <outlet property="videoSearchResultsTableView" destination="SF0-5A-BpF" id="Kr5-Zo-HdJ"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -30,7 +30,7 @@
                                 <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="movieCell" width="620" minWidth="40" maxWidth="1000" id="igE-5y-Tzt">
+                                    <tableColumn identifier="videoCell" width="620" minWidth="40" maxWidth="1000" id="igE-5y-Tzt">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

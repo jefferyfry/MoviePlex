@@ -92,27 +92,50 @@
     NSIndexSet *selectedDownloadIndexes = [self.downloadSidebarView selectedRowIndexes];
     
     //determine selected genres
-    NSIndexSet *selectedGenreIndexes = [self.downloadSidebarView selectedRowIndexes];
+    NSIndexSet *selectedGenreIndexes = [self.genreSidebarView selectedRowIndexes];
+    
+    NSMutableString *predicateString = [NSMutableString new];
     
     NSString *searchText = [self.videoSearchField.stringValue stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    if(([searchText length] > 2) && ([selectedDownloadIndexes containsIndex:2])){ //search query plus filter downloaded==NO
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@ OR synopsis CONTAINS[cd] %@ OR actors CONTAINS[cd] %@) AND downloaded == 0 OR downloaded==nil", searchText,searchText,searchText];
-        [fetchRequest setPredicate:predicate];
+    
+    //handle search text
+    if([searchText length] > 2)
+        [predicateString appendFormat:@"(title CONTAINS[cd] '%@' OR synopsis CONTAINS[cd] '%@' OR actors CONTAINS[cd] '%@')",searchText,searchText,searchText];
+    
+    //handle download
+    if([selectedDownloadIndexes count] > 0){
+        if([predicateString length] > 0)
+           [predicateString appendString:@" AND "];
+        if([selectedDownloadIndexes containsIndex:2])
+            [predicateString appendString:@"(downloaded == 0 OR downloaded==nil)"];
+        else if([selectedDownloadIndexes containsIndex:1])
+            [predicateString appendString:@"(downloaded == 1)"];
+        
     }
-    else if(([searchText length] > 2) && ([selectedDownloadIndexes containsIndex:1])){ //search query plus filter downloaded==YES
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@ OR synopsis CONTAINS[cd] %@ OR actors CONTAINS[cd] %@) AND downloaded == 1", searchText,searchText,searchText];
-        [fetchRequest setPredicate:predicate];
+
+    //handle genres
+    if([selectedGenreIndexes count] > 0){
+        if([predicateString length] > 0)
+            [predicateString appendString:@" AND "];
+        [predicateString appendString:@"("];
+        __block int count = 0;
+        [selectedGenreIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+            JBFGenre *genre = self.genres[idx-1];
+            
+            count+=1;
+            if(count == [selectedGenreIndexes count]){
+                [predicateString appendFormat:@"genre CONTAINS[cd] '%@'",genre.name];
+                *stop = YES;
+            }
+            else
+                [predicateString appendFormat:@"genre CONTAINS[cd] '%@' OR",genre.name];
+        }];
+        [predicateString appendString:@")"];
     }
-    else if([searchText length] > 2){ //search query and no filter
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@ OR synopsis CONTAINS[cd] %@ OR actors CONTAINS[cd] %@", searchText,searchText,searchText];
-        [fetchRequest setPredicate:predicate];
-    }
-    else if([selectedDownloadIndexes containsIndex:2]){
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloaded == 0 OR downloaded==nil"];
-        [fetchRequest setPredicate:predicate];
-    }
-    else if([selectedDownloadIndexes containsIndex:1]){
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloaded == 1"];
+    NSLog(@"Predicate %@",predicateString);
+    
+    if ([predicateString length] > 0){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
         [fetchRequest setPredicate:predicate];
     }
     
