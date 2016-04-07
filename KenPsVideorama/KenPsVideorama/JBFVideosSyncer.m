@@ -16,7 +16,7 @@ NSString *const MovieListingUrl = @"https://brentium.sea.i.extrahop.com/movies/M
 NSString *const TvListingUrl = @"https://brentium.sea.i.extrahop.com/movies/TV%20Shows";
 NSString *const OtherListingUrl = @"https://brentium.sea.i.extrahop.com/movies/Other";
 NSString *const XpathRows = @"//tbody/tr";
-NSString *const XpathLink = @"td[1]/a/@href";
+NSString *const XpathLink = @"td[@class='n']/a/@href";
 NSString *const XpathUploadDate = @"td[@class='m']";
 
 @interface JBFVideosSyncer() <NSUserNotificationCenterDelegate>
@@ -104,11 +104,11 @@ NSString *const XpathUploadDate = @"td[@class='m']";
     for(NSXMLNode *rowNode in rowNodes){
         NSArray *linkNodes = [rowNode nodesForXPath:XpathLink error:&error];
         NSXMLNode *linkNode = linkNodes[0];
-        if([linkNode.stringValue containsString:@".mkv"]){
-            NSString *linkString = [NSString stringWithFormat:@"%@%@",MovieListingUrl,linkNode.stringValue];
+        if([linkNode.stringValue hasSuffix:@".mkv"]){
+            NSString *fullPath = [[[[connection currentRequest] URL].absoluteString stringByAppendingString:@"/"] stringByAppendingString:linkNode.stringValue];
             //see if this video exists in core data already
             //if it does skip else add it
-            NSPredicate *predicate =[NSPredicate predicateWithFormat:@"downloadUrl==%@",linkString];
+            NSPredicate *predicate =[NSPredicate predicateWithFormat:@"downloadUrl==%@",fullPath];
             fetchRequest.predicate=predicate;
             NSError *error = nil;
             NSArray *array = [childManagedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -118,8 +118,15 @@ NSString *const XpathUploadDate = @"td[@class='m']";
                 NSXMLNode *updateDateNode = uploadNodes[0];
                 NSString *uploadDateString = [updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
                 
-                [self.videoSearch searchForVideo:searchString withDownloadUrl:linkString withUploadDate:uploadDateString];
+                [self.videoSearch searchForVideo:searchString withDownloadUrl:fullPath withUploadDate:uploadDateString];
             }
+        }
+        else if([linkNode.stringValue hasSuffix:@"/"] && ![linkNode.stringValue hasSuffix:@"../"]){ //go into a directory
+            NSString *fullPath = [[[[connection currentRequest] URL].absoluteString stringByAppendingString:@"/"] stringByAppendingString:linkNode.stringValue];
+            NSURL *dirListingUrl = [NSURL URLWithString:fullPath];
+            NSURLRequest *dirListingUrlRequest = [NSURLRequest requestWithURL:dirListingUrl];
+            NSURLConnection *dirListingUrlConnection = [[NSURLConnection alloc] initWithRequest:dirListingUrlRequest delegate:self];
+            [dirListingUrlConnection start];
         }
     }
     
@@ -164,6 +171,14 @@ NSString *const XpathUploadDate = @"td[@class='m']";
             newVideo.rating = result[@"Metascore"];
         newVideo.actors = result[@"Actors"];
         newVideo.downloaded = NO;
+        
+        //movie, tv or other
+        if([newVideo.downloadUrl rangeOfString:@"Movie"].location != NSNotFound)
+            newVideo.type = @"Movie";
+        else if([newVideo.downloadUrl rangeOfString:@"Shows/"].location != NSNotFound)
+            newVideo.type = @"TV";
+        else //if([newVideo.downloadUrl rangeOfString:@"Other/"].location != NSNotFound)
+            newVideo.type = @"Other";
         
         NSError *error = nil;
         if (![childManagedObjectContext save:&error]) {

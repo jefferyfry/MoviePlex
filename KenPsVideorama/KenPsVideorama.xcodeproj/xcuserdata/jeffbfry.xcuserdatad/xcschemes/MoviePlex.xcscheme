@@ -43,21 +43,21 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "123F3DC219A26D8600441B9C"
-            BuildableName = "MoviePlex.app"
-            BlueprintName = "MoviePlex"
-            ReferencedContainer = "container:MoviePlex.xcodeproj">
+            BuildableName = "KenPsVideorama.app"
+            BlueprintName = "KenPsVideorama"
+            ReferencedContainer = "container:KenPsVideorama.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      buildConfiguration = "Release"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      ignoresPersistentStateOnLaunch = "NO"
+      ignoresPersistentStateOnLaunch = "YES"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "123F3DC219A26D8600441B9C"
-            BuildableName = "MoviePlex.app"
-            BlueprintName = "MoviePlex"
-            ReferencedContainer = "container:MoviePlex.xcodeproj">
+            BuildableName = "KenPsVideorama.app"
+            BlueprintName = "KenPsVideorama"
+            ReferencedContainer = "container:KenPsVideorama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

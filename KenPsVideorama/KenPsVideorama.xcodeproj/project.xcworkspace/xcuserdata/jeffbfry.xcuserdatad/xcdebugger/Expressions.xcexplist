@@ -3,10 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[JBFMovieListingWindowController loadMovies]:JBFMovieListingWindowController.m">
+         contextName = "-[JBFMovieListingViewController tableView:viewForTableColumn:row:]:JBFMovieListingViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.filterField.selectedSegment">
+               value = "movie.downloaded">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,10 +47,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[JBFMovieListingViewController tableView:viewForTableColumn:row:]:JBFMovieListingViewController.m">
+         contextName = "-[JBFVideosSyncer connectionDidFinishLoading:]:JBFVideosSyncer.m">
          <PersistentStrings>
             <PersistentString
-               value = "movie.downloaded">
+               value = "[[connection currentRequest] URL].absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[JBFMovieListingWindowController loadMovies]:JBFMovieListingWindowController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.filterField.selectedSegment">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

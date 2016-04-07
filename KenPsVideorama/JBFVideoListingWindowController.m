@@ -13,7 +13,7 @@
 
 @interface JBFVideoListingWindowController () <NSSplitViewDelegate,NSOutlineViewDataSource,NSOutlineViewDelegate>
 
-@property JBFVideoListingViewController *videoSearchListingViewController;
+@property JBFVideoListingViewController *videoListingViewController;
 @property (weak) IBOutlet NSSearchField *videoSearchField;
 @property (weak) IBOutlet NSSegmentedControl *sortField;
 @property (weak) IBOutlet NSSplitView *splitView;
@@ -42,14 +42,14 @@
 {
     [super windowDidLoad];
     [self.window setTitle:@"Ken Pickle's Videorama 1.0"];
-    self.videoSearchListingViewController = [JBFVideoListingViewController new];
-    self.videoSearchListingViewController.view.frame = [self.window.contentView bounds];
-    self.videoSearchListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;
-    [self.splitView replaceSubview:[self.splitView subviews][1] with:self.videoSearchListingViewController.view];
+    self.videoListingViewController = [JBFVideoListingViewController new];
+    self.videoListingViewController.view.frame = [self.window.contentView bounds];
+    self.videoListingViewController.view.autoresizingMask = NSViewHeightSizable|NSViewWidthSizable;
+    [self.splitView replaceSubview:[self.splitView subviews][1] with:self.videoListingViewController.view];
     [self.splitView adjustSubviews];
     [self.splitView setDelegate:self];
     [self loadGenres];
-    self.downloadStatus = [NSArray arrayWithObjects:@"Yes",@"No", nil];
+    self.downloadStatus = [NSArray arrayWithObjects:@"All",@"Yes",@"No", nil];
    
     
     [self.genreSidebarView setDataSource:self];
@@ -63,12 +63,22 @@
     //load core data videos into array
     [self loadVideos];
     
-    [self.genreSidebarView expandItem:nil expandChildren:YES];
+    //set sidebar selection option
     [self.genreSidebarView setAllowsMultipleSelection:YES];
-    [self.downloadSidebarView expandItem:nil expandChildren:YES];
     [self.downloadSidebarView setAllowsMultipleSelection:NO];
     
-    [self.window center];
+    //expand sidebars
+    [self.genreSidebarView expandItem:nil expandChildren:YES];
+    [self.downloadSidebarView expandItem:nil expandChildren:YES];
+    
+    //set initial selection
+    [self.genreSidebarView selectRowIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] byExtendingSelection:NO];
+    [self.downloadSidebarView selectRowIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 1)] byExtendingSelection:NO];
+    
+    //counts
+    [self countMovies];
+    [self countTVShows];
+    [self countOther];
 }
 
 -(void)loadGenres {
@@ -79,7 +89,51 @@
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     
     NSError *error = nil;
-    self.genres = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *genresDb = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSMutableArray *genresList = [NSMutableArray new];
+    [genresList addObject:@"All"];
+    for(id genre in genresDb)
+        [genresList addObject:genre];
+    self.genres = genresList;
+}
+
+-(void)countMovies {
+    NSManagedObjectContext* managedObjectContext = [[JBFCoreDataStack sharedStack] rootManagedObjectContext];
+    
+    //count
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Video"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type CONTAINS[cd] 'Movie'"];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *result = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    [self.numMoviesLabel setStringValue:[NSString stringWithFormat:@"%lu", (unsigned long)result.count]];
+}
+
+-(void)countTVShows {
+    NSManagedObjectContext* managedObjectContext = [[JBFCoreDataStack sharedStack] rootManagedObjectContext];
+    
+    //count
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Video"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type CONTAINS[cd] 'TV'"];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *result = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    [self.numTvLabel setStringValue:[NSString stringWithFormat:@"%lu", (unsigned long)result.count]];
+}
+
+-(void)countOther {
+    NSManagedObjectContext* managedObjectContext = [[JBFCoreDataStack sharedStack] rootManagedObjectContext];
+    
+    //count
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Video"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type CONTAINS[cd] 'Other'"];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *result = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    [self.numOtherLabel setStringValue:[NSString stringWithFormat:@"%lu", (unsigned long)result.count]];
 }
 
 -(void)loadVideos {
@@ -103,24 +157,24 @@
         [predicateString appendFormat:@"(title CONTAINS[cd] '%@' OR synopsis CONTAINS[cd] '%@' OR actors CONTAINS[cd] '%@')",searchText,searchText,searchText];
     
     //handle download
-    if([selectedDownloadIndexes count] > 0){
+    if([selectedDownloadIndexes count] > 0 && ![selectedDownloadIndexes containsIndex:1]){
         if([predicateString length] > 0)
            [predicateString appendString:@" AND "];
-        if([selectedDownloadIndexes containsIndex:2])
+        if([selectedDownloadIndexes containsIndex:3]) //not downloaded
             [predicateString appendString:@"(downloaded == 0 OR downloaded==nil)"];
-        else if([selectedDownloadIndexes containsIndex:1])
+        else if([selectedDownloadIndexes containsIndex:2]) //downloaded
             [predicateString appendString:@"(downloaded == 1)"];
         
     }
 
     //handle genres
-    if([selectedGenreIndexes count] > 0){
+    if([selectedGenreIndexes count] > 0 && ![selectedGenreIndexes containsIndex:1]){
         if([predicateString length] > 0)
             [predicateString appendString:@" AND "];
         [predicateString appendString:@"("];
         __block int count = 0;
         [selectedGenreIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-            JBFGenre *genre = self.genres[idx-1];
+            JBFGenre *genre = self.genres[idx-1]; //skip all
             
             count+=1;
             if(count == [selectedGenreIndexes count]){
@@ -152,8 +206,8 @@
     NSError *error = nil;
     NSArray *videos = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    self.videoSearchListingViewController.videos = videos;
-    [self.videoSearchListingViewController reloadData];
+    self.videoListingViewController.videos = videos;
+    [self.videoListingViewController reloadData];
 }
 
 - (IBAction)fireVideoSearch:(id)sender {
@@ -166,6 +220,9 @@
 
 -(void)videosUpdated {
     [self loadVideos];
+    [self countMovies];
+    [self countTVShows];
+    [self countOther];
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
