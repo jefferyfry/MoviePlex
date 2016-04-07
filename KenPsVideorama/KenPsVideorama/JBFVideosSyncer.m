@@ -42,10 +42,23 @@ NSString *const XpathUploadDate = @"td[@class='m']";
 
 -(void)syncVideos {
     //read links from directory
-    NSURL *videoListingUrl = [NSURL URLWithString:MovieListingUrl];
-    NSURLRequest *videoListingUrlRequest = [NSURLRequest requestWithURL:videoListingUrl];
-    NSURLConnection *videoListingUrlConnection = [[NSURLConnection alloc] initWithRequest:videoListingUrlRequest delegate:self];
-    [videoListingUrlConnection start];
+    //process the movies
+    NSURL *movieListingUrl = [NSURL URLWithString:MovieListingUrl];
+    NSURLRequest *movieListingUrlRequest = [NSURLRequest requestWithURL:movieListingUrl];
+    NSURLConnection *movieListingUrlConnection = [[NSURLConnection alloc] initWithRequest:movieListingUrlRequest delegate:self];
+    [movieListingUrlConnection start];
+    
+    //process tv
+    NSURL *tvListingUrl = [NSURL URLWithString:TvListingUrl];
+    NSURLRequest *tvListingUrlRequest = [NSURLRequest requestWithURL:tvListingUrl];
+    NSURLConnection *tvListingUrlConnection = [[NSURLConnection alloc] initWithRequest:tvListingUrlRequest delegate:self];
+    [tvListingUrlConnection start];
+    
+    //process other
+    NSURL *otherListingUrl = [NSURL URLWithString:OtherListingUrl];
+    NSURLRequest *otherListingUrlRequest = [NSURLRequest requestWithURL:otherListingUrl];
+    NSURLConnection *otherListingUrlConnection = [[NSURLConnection alloc] initWithRequest:otherListingUrlRequest delegate:self];
+    [otherListingUrlConnection start];
 }
 
 

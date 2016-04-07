@@ -132,7 +132,7 @@
         }];
         [predicateString appendString:@")"];
     }
-    NSLog(@"Predicate %@",predicateString);
+    //NSLog(@"Predicate %@",predicateString);
     
     if ([predicateString length] > 0){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
