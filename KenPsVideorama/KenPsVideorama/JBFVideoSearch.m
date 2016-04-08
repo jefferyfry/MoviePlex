@@ -71,18 +71,20 @@ NSString *const videoTitleYearAPIUrl = @"http://www.omdbapi.com/?t=%@&y=%@plot=f
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if([self.delegate respondsToSelector:@selector(finishedSearchRequest:)]){
-        NSMutableDictionary *videoSearchResult = [[NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:nil] mutableCopy];
-        
-        if([videoSearchResult objectForKey:@"Error"]!=nil){
-            videoSearchResult = [[NSMutableDictionary alloc] init];
-            [videoSearchResult setValue:connection.originalRequest.searchText forKey:@"Title"];
+    @synchronized(self){ //multiple threads are accessing need sync
+        if([self.delegate respondsToSelector:@selector(finishedSearchRequest:)]){
+            NSMutableDictionary *videoSearchResult = [[NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:nil] mutableCopy];
+            
+            if([videoSearchResult objectForKey:@"Error"]!=nil){
+                videoSearchResult = [[NSMutableDictionary alloc] init];
+                [videoSearchResult setValue:connection.originalRequest.searchText forKey:@"Title"];
+            }
+            
+            [videoSearchResult setValue:connection.originalRequest.downloadUrl forKey:@"downloadUrl"];
+            [videoSearchResult setValue:connection.originalRequest.uploadDate forKey:@"uploadDate"];
+            //NSLog(@"%@", videoSearchResult);
+            [self.delegate finishedSearchRequest:videoSearchResult];
         }
-        
-        [videoSearchResult setValue:connection.originalRequest.downloadUrl forKey:@"downloadUrl"];
-        [videoSearchResult setValue:connection.originalRequest.uploadDate forKey:@"uploadDate"];
-        //NSLog(@"%@", videoSearchResult);
-        [self.delegate finishedSearchRequest:videoSearchResult];
     }
     
 }

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[JBFVideosSyncer finishedSearchRequest:]:JBFVideosSyncer.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "newVideo.downloadUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[JBFRottenTomatoesMovieSearch executeRequestWithDelay:]:JBFRottenTomatoesMovieSearch.m">
          <PersistentStrings>
             <PersistentString

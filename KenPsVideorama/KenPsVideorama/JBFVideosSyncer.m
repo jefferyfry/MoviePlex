@@ -41,24 +41,36 @@ NSString *const XpathUploadDate = @"td[@class='m']";
 }
 
 -(void)syncVideos {
-    //read links from directory
-    //process the movies
-    NSURL *movieListingUrl = [NSURL URLWithString:MovieListingUrl];
-    NSURLRequest *movieListingUrlRequest = [NSURLRequest requestWithURL:movieListingUrl];
-    NSURLConnection *movieListingUrlConnection = [[NSURLConnection alloc] initWithRequest:movieListingUrlRequest delegate:self];
-    [movieListingUrlConnection start];
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self selector:@selector(syncMovies)
+                                   userInfo:nil repeats:NO];
     
-    //process tv
-    NSURL *tvListingUrl = [NSURL URLWithString:TvListingUrl];
-    NSURLRequest *tvListingUrlRequest = [NSURLRequest requestWithURL:tvListingUrl];
-    NSURLConnection *tvListingUrlConnection = [[NSURLConnection alloc] initWithRequest:tvListingUrlRequest delegate:self];
-    [tvListingUrlConnection start];
+    [NSTimer scheduledTimerWithTimeInterval:5.0
+                                     target:self selector:@selector(syncTVShows)
+                                   userInfo:nil repeats:NO];
     
-    //process other
-    NSURL *otherListingUrl = [NSURL URLWithString:OtherListingUrl];
-    NSURLRequest *otherListingUrlRequest = [NSURLRequest requestWithURL:otherListingUrl];
-    NSURLConnection *otherListingUrlConnection = [[NSURLConnection alloc] initWithRequest:otherListingUrlRequest delegate:self];
-    [otherListingUrlConnection start];
+    [NSTimer scheduledTimerWithTimeInterval:10.0
+                                     target:self selector:@selector(syncOther)
+                                   userInfo:nil repeats:NO];
+}
+
+-(void)syncMovies{
+    [self getListingUrl:MovieListingUrl];
+}
+
+-(void)syncTVShows{
+    [self getListingUrl:TvListingUrl];
+}
+
+-(void)syncOther{
+    [self getListingUrl:OtherListingUrl];
+}
+
+-(void)getListingUrl:(NSString*)urlString {
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    [urlConnection start];
 }
 
 
@@ -88,56 +100,84 @@ NSString *const XpathUploadDate = @"td[@class='m']";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    //convert the directory listing to html
-    NSError *error;
-    NSXMLDocument *document =
-    [[NSXMLDocument alloc] initWithData:self.receivedData options:NSXMLDocumentTidyHTML error:&error];
-    
-    NSXMLElement *rootNode = [document rootElement];
-  
-    //get the listing rows
-    NSArray *rowNodes = [rootNode nodesForXPath:XpathRows error:&error];
-    NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
-    
-    //now query core data to see if videos already exist
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Video"];
-    for(NSXMLNode *rowNode in rowNodes){
-        NSArray *linkNodes = [rowNode nodesForXPath:XpathLink error:&error];
-        NSXMLNode *linkNode = linkNodes[0];
-        if([linkNode.stringValue hasSuffix:@".mkv"]){
-            NSString *fullPath = [[[[connection currentRequest] URL].absoluteString stringByAppendingString:@"/"] stringByAppendingString:linkNode.stringValue];
-            //see if this video exists in core data already
-            //if it does skip else add it
-            NSPredicate *predicate =[NSPredicate predicateWithFormat:@"downloadUrl==%@",fullPath];
-            fetchRequest.predicate=predicate;
-            NSError *error = nil;
-            NSArray *array = [childManagedObjectContext executeFetchRequest:fetchRequest error:&error];
-            if (array == nil || [array count] == 0) {
-                NSArray *uploadNodes = [rowNode nodesForXPath:XpathUploadDate error:&error];
-                NSString *searchString = [[linkNode.stringValue stringByDeletingPathExtension] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                NSXMLNode *updateDateNode = uploadNodes[0];
-                NSString *uploadDateString = [updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
-                
-                [self.videoSearch searchForVideo:searchString withDownloadUrl:fullPath withUploadDate:uploadDateString];
+    @synchronized(self){ //multiple threads are accessing need sync
+        //convert the directory listing to html
+        NSError *error;
+        NSXMLDocument *document =
+        [[NSXMLDocument alloc] initWithData:self.receivedData options:NSXMLDocumentTidyHTML error:&error];
+        
+        NSXMLElement *rootNode = [document rootElement];
+      
+        //get the listing rows
+        NSArray *rowNodes = [rootNode nodesForXPath:XpathRows error:&error];
+        NSManagedObjectContext* childManagedObjectContext = [[JBFCoreDataStack sharedStack] newChildManagedObjectContext];
+        
+        //now query core data to see if videos already exist
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Video"];
+        for(NSXMLNode *rowNode in rowNodes){
+            NSArray *linkNodes = [rowNode nodesForXPath:XpathLink error:&error];
+            NSXMLNode *linkNode = linkNodes[0];
+            if([linkNode.stringValue hasSuffix:@".mkv"]||[linkNode.stringValue hasSuffix:@".mp4"]){
+                NSString *fullPath = [[[[connection currentRequest] URL].absoluteString stringByAppendingString:@"/"] stringByAppendingString:linkNode.stringValue];
+                //see if this video exists in core data already
+                //if it does skip else add it
+                NSPredicate *predicate =[NSPredicate predicateWithFormat:@"downloadUrl==%@",fullPath];
+                fetchRequest.predicate=predicate;
+                NSError *error = nil;
+                NSArray *array = [childManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+                if (array == nil || [array count] == 0) {
+                    NSArray *uploadNodes = [rowNode nodesForXPath:XpathUploadDate error:&error];
+                    NSString *searchString = [[linkNode.stringValue stringByDeletingPathExtension] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                    NSXMLNode *updateDateNode = uploadNodes[0];
+                    NSString *uploadDateString = [self convertDateString:[updateDateNode.stringValue componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0]];
+                    NSLog(@"%@",fullPath);
+                    [self.videoSearch searchForVideo:searchString withDownloadUrl:fullPath withUploadDate:uploadDateString];
+                }
+            }
+            else if([linkNode.stringValue hasSuffix:@"/"] && ![linkNode.stringValue hasSuffix:@"../"]){ //go into a directory
+                NSString *fullPath = [[[[connection currentRequest] URL].absoluteString stringByAppendingString:@"/"] stringByAppendingString:linkNode.stringValue];
+                NSURL *dirListingUrl = [NSURL URLWithString:fullPath];
+                NSURLRequest *dirListingUrlRequest = [NSURLRequest requestWithURL:dirListingUrl];
+                NSURLConnection *dirListingUrlConnection = [[NSURLConnection alloc] initWithRequest:dirListingUrlRequest delegate:self];
+                [dirListingUrlConnection start];
             }
         }
-        else if([linkNode.stringValue hasSuffix:@"/"] && ![linkNode.stringValue hasSuffix:@"../"]){ //go into a directory
-            NSString *fullPath = [[[[connection currentRequest] URL].absoluteString stringByAppendingString:@"/"] stringByAppendingString:linkNode.stringValue];
-            NSURL *dirListingUrl = [NSURL URLWithString:fullPath];
-            NSURLRequest *dirListingUrlRequest = [NSURLRequest requestWithURL:dirListingUrl];
-            NSURLConnection *dirListingUrlConnection = [[NSURLConnection alloc] initWithRequest:dirListingUrlRequest delegate:self];
-            [dirListingUrlConnection start];
-        }
     }
-    
 }
 
 -(NSString*)convertReleaseDateString:(NSString*)releaseDateString {
     NSArray *array = [releaseDateString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if([array count]>2)
-        return [NSString stringWithFormat:@"%@-%@-%@",array[2],array[1],array[0]];
+        return [self convertDateString:[NSString stringWithFormat:@"%@-%@-%@",array[2],array[1],array[0]]];
     else
-        return releaseDateString;
+        return [self convertDateString:releaseDateString];
+}
+
+-(NSString*)convertDateString:(NSString*)dateString {
+    if([dateString rangeOfString:@"Jan"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Jan" withString:@"01"];
+    else if([dateString rangeOfString:@"Feb"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Feb" withString:@"02"];
+    else if([dateString rangeOfString:@"Mar"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Mar" withString:@"03"];
+    else if([dateString rangeOfString:@"Apr"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Apr" withString:@"04"];
+    else if([dateString rangeOfString:@"May"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"May" withString:@"05"];
+    else if([dateString rangeOfString:@"Jun"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Jun" withString:@"06"];
+    else if([dateString rangeOfString:@"Jul"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Jul" withString:@"07"];
+    else if([dateString rangeOfString:@"Aug"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Aug" withString:@"08"];
+    else if([dateString rangeOfString:@"Sep"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Sep" withString:@"09"];
+    else if([dateString rangeOfString:@"Oct"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Oct" withString:@"10"];
+    else if([dateString rangeOfString:@"Nov"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Nov" withString:@"11"];
+    else //if([dateString rangeOfString:@"Jan"].location != NSNotFound)
+        return [dateString stringByReplacingOccurrencesOfString:@"Dec" withString:@"12"];
 }
 
 
@@ -173,7 +213,7 @@ NSString *const XpathUploadDate = @"td[@class='m']";
         newVideo.downloaded = NO;
         
         //movie, tv or other
-        if([newVideo.downloadUrl rangeOfString:@"Movie"].location != NSNotFound)
+        if([newVideo.downloadUrl rangeOfString:@"Movies/"].location != NSNotFound)
             newVideo.type = @"Movie";
         else if([newVideo.downloadUrl rangeOfString:@"Shows/"].location != NSNotFound)
             newVideo.type = @"TV";
